@@ -14,7 +14,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:prod": "rsync -avzhe ssh --progress ./build/* sidewin@167.172.183.173:/var/www/ideas.sidewinder22.pl/html"
   },
   "eslintConfig": {
     "extends": "react-app"
