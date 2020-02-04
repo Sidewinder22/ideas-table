@@ -1,13 +1,14 @@
 TABLE: USER
 - id
 - username
+- email
 - password
-- mail
 
 TABLE: Idea
 - id
 - (foreign-key) user_id
-- category
 - title 
+- category
+- date
 - content
 

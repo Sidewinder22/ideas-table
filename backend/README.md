@@ -15,6 +15,12 @@ $ (venv) pip install sqlalchemy
 
 $ (venv) pip install flask-migrate
 
+$ (venv) pip install python-dotenv
+
+### DataBase
+$ (venv) flask db migrate -m "users table"
+$ (venv) flask db upgrade
+
 ### Run
 $ (vevn) export FLASK_APP=app.py
 $ flask run
