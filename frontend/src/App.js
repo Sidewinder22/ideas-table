@@ -34,9 +34,10 @@ class App extends Component {
         <h1>Hi, Frontend</h1>
         <ul>
           <li>id: { this.state.data.id }</li>
-          <li>user: { this.state.data.user },</li>
+          <li>user: { this.state.data.user }</li>
           <li>mail: { this.state.data.mail }</li>
         </ul>
+        <p>1</p>
       </>
     );
   }

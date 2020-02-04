@@ -1,11 +1,8 @@
-from flask import Flask
 from flask import jsonify
-from flask_cors import CORS
-
-app = Flask(__name__)
-CORS(app)
+from app import app
 
 @app.route('/')
+@app.route('/index')
 def index():
     return '<h1>IDeas Table Backed</h1>'
 
