@@ -1,4 +1,5 @@
 from flask import jsonify
+from flask import request
 from app.models import User
 from app import app
 
@@ -7,13 +8,10 @@ from app import app
 def index():
     return '<h1>IDeas Table Backed</h1>'
 
-@app.route('/api/user/1')
-def example_data():
-    u = User.query.get(1)
+@app.route('/api/user/<number>')
+def example_data(number):
+    u = User.query.get(number)
     result = jsonify(
-        # id='1',
-        # user='Sidewin',
-        # mail='sidewin@example.com'
         id=u.id,
         user=u.username,
         mail=u.email
