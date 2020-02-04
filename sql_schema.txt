@@ -9,6 +9,6 @@ TABLE: Idea
 - (foreign-key) user_id
 - title 
 - category
-- date
+- timestamp
 - content
 
