@@ -24,3 +24,4 @@ $ (venv) flask db upgrade
 ### Run
 $ (vevn) export FLASK_APP=app.py
 $ flask run
+$ (flask shell) db.create_all()

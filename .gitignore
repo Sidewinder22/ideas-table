@@ -62,3 +62,6 @@ venv
 
 # DB
 app.db
+
+# Rope
+.ropeproject

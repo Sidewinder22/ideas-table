@@ -24,7 +24,7 @@ class Idea(db.Model):
 
     def __repr__(self):
         return '<Idea {}>'.format(self.title)
-    
+
 #class Category(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)
 #    name = db.Column(db.String(64), index=True, unique=True)

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 const API = 'http://127.0.0.1:5000/api/' ;
-const DEFAULT_QUERY = 'users';
+const DEFAULT_QUERY = 'user/1';
 
 class App extends Component {
   constructor(props) {
