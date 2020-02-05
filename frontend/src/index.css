@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Cadman';
+    src: url('Cadman_Roman-webfont.woff') format('woff');
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-size;
+}
+
+body {
+    font-size: 1em;
+    font-family: 'Cadman', sans-serif;
+}
+
+/**********************************************************
+ * App
+ */
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/**********************************************************
+ * User
+ */
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/**********************************************************
+ * Widget
+ */
+.widget {
+    border: 1px solid green;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f2f2f2;
+    width: 350px;
+}
+
+.widget .title {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.widget .category {
+    color: #5D6063;
+    padding: 5px;
+}
+
+.widget .body {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.widget .timestamp {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+    font-size: 0.8em;
+}
