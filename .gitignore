@@ -59,3 +59,9 @@ venv
 
 # Scope
 .files_for_cscope
+
+# DB
+app.db
+
+# Rope
+.ropeproject

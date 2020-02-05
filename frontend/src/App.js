@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 const API = 'http://127.0.0.1:5000/api/' ;
-const DEFAULT_QUERY = 'users';
+const DEFAULT_QUERY = 'user/1';
 
 class App extends Component {
   constructor(props) {
@@ -34,9 +34,10 @@ class App extends Component {
         <h1>Hi, Frontend</h1>
         <ul>
           <li>id: { this.state.data.id }</li>
-          <li>user: { this.state.data.user },</li>
+          <li>user: { this.state.data.user }</li>
           <li>mail: { this.state.data.mail }</li>
         </ul>
+        <p>1</p>
       </>
     );
   }

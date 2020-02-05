@@ -1,0 +1,14 @@
+TABLE: USER
+- id
+- username
+- email
+- password
+
+TABLE: Idea
+- id
+- (foreign-key) user_id
+- title 
+- category
+- timestamp
+- content
+
