@@ -37,15 +37,10 @@ def get_idea(number):
 @app.route('/api/ideas')
 def get_ideas():
     ideas = Idea.query.all()
-    # jsonStr = ''
+    jsonStr = ''
     ideasList = []
 
-    for i in ideas:
-        print(i.title)
-
     try:
-        # ideasList = []
-
         for idea in ideas:
             tempDict = {
                 'id' : idea.id,
@@ -58,10 +53,9 @@ def get_ideas():
             ideasList.append(tempDict)
         
         # Convert to json data
-        #jsonStr = json.dumps(ideasList)
+        jsonStr = json.dumps(ideasList)
 
     except Exception as err:
         print("Get ideas error: {0}".format(err))
 
-    # return jsonify(jsonStr)
-    return jsonify(ideasList)
+    return jsonify(jsonStr)
