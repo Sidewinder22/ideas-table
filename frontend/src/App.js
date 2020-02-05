@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
+import './index.css';
+import Widget from './components/Widget';
 
 const API = 'http://127.0.0.1:5000/api/' ;
-const USER_QUERY = 'user/1';
-const IDEA_QUERY = 'idea/1';
+const USER_QUERY = 'user/2';
+const IDEA_QUERY = 'idea/2';
 
 class App extends Component {
   constructor(props) {
@@ -48,25 +49,24 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <div className='app'>
         <h1>IDeas Table</h1>
-        <h2>User</h2>
-        <ul>
-          <li>id: { this.state.user.id }</li>
-          <li>user: { this.state.user.username }</li>
-          <li>email: { this.state.user.email }</li>
-        </ul>
+        <div className='user'>
+          <h2>User</h2>
+          <p>
+            user: { this.state.user.username},
+            id: { this.state.user.id },
+            email: { this.state.user.email }
+          </p>
+        </div>
 
-        <h2>IDea</h2>
-        <ul>
-          <li>id: { this.state.idea.id }</li>
-          <li>user_id: { this.state.idea.user_id }</li>
-          <li>title: { this.state.idea.title }</li>
-          <li>timestamp: { this.state.idea.timestamp }</li>
-          <li>category: { this.state.idea.category }</li>
-          <li>body: { this.state.idea.body }</li>
-        </ul>
-      </>
+        <Widget
+          title = { this.state.idea.title }
+          category = { this.state.idea.category }
+          body = { this.state.idea.body }
+          timestamp = { this.state.idea.timestamp }
+        />
+      </div>
     );
   }
 }
