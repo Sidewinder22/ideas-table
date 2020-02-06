@@ -1,29 +1,8 @@
 import React, { Component } from 'react';
 import '../index.css';
-
-function Title(props) {
-    return (
-        <div className='title'>
-            <h2>{ props.title }</h2>
-        </div>
-    )
-}
-
-function Category(props) {
-    return (
-        <div className='category'>
-            <h3>{ props.category }</h3>
-        </div>
-    );
-}
-
-function Body(props) {
-    return (
-        <div className='body'>
-            <p>{ props.body }</p>
-        </div>
-    );
-}
+import Body from './Body';
+import Category from './Category';
+import Title from './Title';
 
 function Timestamp(props) {
     return (
@@ -38,11 +17,14 @@ class Widget extends Component {
         return (
             <div className='widget'>
                 <Title
-                    title = { this.props.title }/>
+                    id = { this.props.id }
+                    text = { this.props.title }/>
                 <Category
-                    category = { this.props.category } />
+                    id = { this.props.id }
+                    text = { this.props.category } />
                 <Body
-                    body = { this.props.body } />
+                    id = { this.props.id }
+                    text = { this.props.body } />
                 <Timestamp
                     timestamp = { this.props.timestamp } />
             </div>

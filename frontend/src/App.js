@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+// import ReadyWidget from './components/ReadyWidget';
 import Widget from './components/Widget';
 
 const API = 'http://127.0.0.1:5000/api/' ;
@@ -9,14 +10,16 @@ const IDEAS_QUERY = 'ideas';
 function RenderWidgets(props) {
   const ideas = props.ideas;
 
-  const result = ideas.map((idea) => 
-      <Widget
+  const result = ideas.map((idea) =>  {
+      return (<Widget
+        id = { idea.id }
         key = { idea.id }
         title= { idea.title }
         category = { idea.category }
         body = { idea.body }
         timestamp = { idea.timestamp }
       />
+      );}
   );
 
   return (

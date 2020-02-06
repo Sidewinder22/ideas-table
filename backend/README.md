@@ -25,3 +25,7 @@ $ (venv) flask db upgrade
 $ (vevn) export FLASK_APP=app.py
 $ flask run
 $ (flask shell) db.create_all()
+
+### REST POST
+$ curl -X POST -H 'Content-Type: application/json' http://127.0.0.1:5000/api/idea/1 -d '{"title": "New Title"}'
+

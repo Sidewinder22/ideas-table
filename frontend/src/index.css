@@ -40,9 +40,9 @@ body {
  * Widget
  */
 .widgets {
-    width: 1200px;
+    width: 900px;
     display: grid;
-    grid-template-columns: auto auto auto ;
+    grid-template-columns: auto auto auto;
     column-gap: 40px; 
     row-gap: 40px;
     grid-auto-rows: minmax(100px, auto);
@@ -55,7 +55,9 @@ body {
     padding: 10px;
     margin: 10px;
     background-color: #f2f2f2;
-    width: 300px;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
 }
 
 .widget .title {
@@ -73,11 +75,12 @@ body {
     padding: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 100px;
 }
 
 .widget .timestamp {
     display: flex;
     justify-content: flex-end;
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 0.8em;
 }

@@ -1,13 +1,14 @@
 from flask import jsonify, json, request
 from app.models import User, Idea
+from app import db
 from app import app
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def index():
     return '<h1>IDeas Table Backed</h1>'
 
-@app.route('/api/user/<number>')
+@app.route('/api/user/<number>', methods=['GET'])
 def get_user(number):
     user = User.query.get(number)
     if user is None:
@@ -19,7 +20,7 @@ def get_user(number):
     )
     return result, {'Content-Type': 'application/json'}
 
-@app.route('/api/idea/<number>')
+@app.route('/api/idea/<number>', methods=['GET'])
 def get_idea(number):
     idea = Idea.query.get(number)
     if idea is None:
@@ -34,7 +35,7 @@ def get_idea(number):
     )
     return result, {'Content-Type': 'application/json'}
 
-@app.route('/api/ideas')
+@app.route('/api/ideas', methods=['GET'])
 def get_ideas():
     ideas = Idea.query.all()
     jsonStr = ''
@@ -59,3 +60,20 @@ def get_ideas():
         print("Get ideas error: {0}".format(err))
 
     return jsonify(jsonStr)
+
+@app.route('/api/idea/<number>', methods=['POST'])
+def edit_idea(number):
+    data = request.get_json()
+    idea = Idea.query.get(number)
+
+    if 'title' in data:
+        idea.title = data['title']
+    elif 'category' in data:
+        idea.category = data['category']
+    elif 'body' in data:
+        idea.body = data['body']
+
+    db.session.add(idea)
+    db.session.commit()
+
+    return jsonify(data)
