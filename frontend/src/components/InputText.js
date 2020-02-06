@@ -9,7 +9,7 @@ function InputText(props) {
                 type = { props.text }
                 id = { props.id }
                 name = { props.name }
-                onChange = { props.onChange }
+                onMouseOut = { props.onChange }
             />
         </form>
     );

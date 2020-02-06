@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import '../index.css'
 import InputText from './InputText';
 
-const API = 'http://127.0.0.1:5000/api/' ;
-const IDEA_QUERY = 'idea/';
+const API = 'http://127.0.0.1:5000/api/idea/' ;
 
 class Title extends Component {
     constructor(props) {
@@ -23,7 +22,7 @@ class Title extends Component {
     handleChange(event) {
         document.getElementById(this.state.id).value = event.target.value;
 
-        fetch(API + IDEA_QUERY + this.props.id, {
+        fetch(API + this.props.id, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

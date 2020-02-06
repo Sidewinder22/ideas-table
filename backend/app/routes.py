@@ -63,15 +63,15 @@ def get_ideas():
 
 @app.route('/api/idea/<number>', methods=['POST'])
 def edit_idea(number):
-    print('edit-idea, number:' + number)
-
+    data = request.get_json()
     idea = Idea.query.get(number)
 
-    data = request.get_json()
-    print(data)
-
-    if data['title']:
+    if 'title' in data:
         idea.title = data['title']
+    elif 'category' in data:
+        idea.category = data['category']
+    elif 'body' in data:
+        idea.body = data['body']
 
     db.session.add(idea)
     db.session.commit()
