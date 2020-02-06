@@ -33,18 +33,29 @@ body {
     border: 1px solid blue;
     border-radius: 5px;
     padding: 5px;
+    margin-bottom: 10px;
 }
 
 /**********************************************************
  * Widget
  */
+.widgets {
+    width: 1200px;
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    column-gap: 40px; 
+    row-gap: 40px;
+    grid-auto-rows: minmax(100px, auto);
+    justify-content: center;
+}
+
 .widget {
     border: 1px solid green;
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
     background-color: #f2f2f2;
-    width: 350px;
+    width: 300px;
 }
 
 .widget .title {

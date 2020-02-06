@@ -19,7 +19,11 @@ function RenderWidgets(props) {
       />
   );
 
-  return <ul>{ result }</ul>;
+  return (
+    <div className='widgets'>
+      { result }
+    </div> 
+  );
 }
 
 class App extends Component {
