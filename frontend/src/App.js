@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
-// import ReadyWidget from './components/ReadyWidget';
 import Widget from './components/Widget';
+import NewWidgetButton from './components/NewWidgetButton';
 
 const API = 'http://127.0.0.1:5000/api/' ;
 const USER_QUERY = 'user/2';
@@ -41,6 +41,8 @@ class App extends Component {
       },
       ideas: [],
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +68,10 @@ class App extends Component {
     });
   }
 
+  handleChange(event) {
+    console.log('New Idea')
+  }
+
   render() {
     return (
       <div className='app'>
@@ -80,6 +86,11 @@ class App extends Component {
         </div>
 
         <h1>Ideas</h1>
+
+        <NewWidgetButton
+          onChange = { this.handleChange }
+        />
+
         <RenderWidgets
           ideas = { this.state.ideas }
         />
