@@ -4,7 +4,27 @@ import Widget from './components/Widget';
 
 const API = 'http://127.0.0.1:5000/api/' ;
 const USER_QUERY = 'user/2';
-const IDEA_QUERY = 'idea/2';
+const IDEAS_QUERY = 'ideas';
+
+function RenderWidgets(props) {
+  const ideas = props.ideas;
+
+  const result = ideas.map((idea) => 
+      <Widget
+        key = { idea.id }
+        title= { idea.title }
+        category = { idea.category }
+        body = { idea.body }
+        timestamp = { idea.timestamp }
+      />
+  );
+
+  return (
+    <div className='widgets'>
+      { result }
+    </div> 
+  );
+}
 
 class App extends Component {
   constructor(props) {
@@ -16,14 +36,7 @@ class App extends Component {
         username: '',
         email: '',
       },
-      idea: {
-        id: null,
-        user_id: null,
-        title: '',
-        timestamp: null,
-        category: '',
-        body: '',
-      }
+      ideas: [],
     };
   }
 
@@ -37,14 +50,17 @@ class App extends Component {
       .then(response => response.json())
       .then(user => this.setState({ user }));
 
-    fetch(API + IDEA_QUERY, {
+    fetch(API + IDEAS_QUERY, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       }
     })
     .then(response => response.json())
-    .then(idea => this.setState({ idea }));
+    .then(ideas =>  {
+      let ideasObject = JSON.parse(ideas)
+      this.setState({ ideas: ideasObject })
+    });
   }
 
   render() {
@@ -60,11 +76,9 @@ class App extends Component {
           </p>
         </div>
 
-        <Widget
-          title = { this.state.idea.title }
-          category = { this.state.idea.category }
-          body = { this.state.idea.body }
-          timestamp = { this.state.idea.timestamp }
+        <h1>Ideas</h1>
+        <RenderWidgets
+          ideas = { this.state.ideas }
         />
       </div>
     );
