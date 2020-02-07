@@ -18,6 +18,7 @@ function RenderWidgets(props) {
         category = { idea.category }
         body = { idea.body }
         timestamp = { idea.timestamp }
+        onCloseButtonChange = { props.onCloseButtonChange }
       />
       );}
   );
@@ -42,7 +43,10 @@ class App extends Component {
       ideas: [],
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNewWidgetButtonChange = 
+      this.handleNewWidgetButtonChange.bind(this);
+    this.handleCloseButtonChange = 
+      this.handleCloseButtonChange.bind(this);
   }
 
   componentDidMount() {
@@ -68,7 +72,7 @@ class App extends Component {
     });
   }
 
-  handleChange(event) {
+  handleNewWidgetButtonChange(event) {
     console.log('New Idea')
 
     fetch(API + IDEAS_QUERY, {
@@ -84,14 +88,40 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(idea => {
-        // console.log(`idea ${idea}`)
         let newIdeas = this.state.ideas;
-
         let ideaObject = JSON.parse(idea)
+
         newIdeas.push(ideaObject)
         this.setState({ ideas: newIdeas})
-        console.log(newIdeas)
       });
+  }
+
+  handleCloseButtonChange(id) {
+    console.log(`Delete idea Id: ${id}`)
+
+    fetch(API + IDEAS_QUERY + '/' + id, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: ''
+    })
+      .then(response => response.json())
+      .then((idea) => {
+        let ideaObject = JSON.parse(idea)
+        let array = this.state.ideas;
+        
+        let index = array.findIndex((element) => {
+          return element.id === Number(ideaObject.id);
+        });
+
+        array.splice(index, 1);
+
+        this.setState({
+          ideas: array,
+        })
+      })
   }
 
   render() {
@@ -110,11 +140,12 @@ class App extends Component {
         <h1>Ideas</h1>
 
         <NewWidgetButton
-          onChange = { this.handleChange }
+          onChange = { this.handleNewWidgetButtonChange }
         />
 
         <RenderWidgets
           ideas = { this.state.ideas }
+          onCloseButtonChange = { this.handleCloseButtonChange }
         />
       </div>
     );
