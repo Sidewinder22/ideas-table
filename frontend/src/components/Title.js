@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../index.css'
 import InputText from './InputText';
 
-const API = 'http://127.0.0.1:5000/api/idea/' ;
+const API = 'http://127.0.0.1:5000/api/ideas/' ;
 
 class Title extends Component {
     constructor(props) {

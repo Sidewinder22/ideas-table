@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './index.css';
-// import ReadyWidget from './components/ReadyWidget';
 import Widget from './components/Widget';
+import NewWidgetButton from './components/NewWidgetButton';
 
 const API = 'http://127.0.0.1:5000/api/' ;
-const USER_QUERY = 'user/2';
+const USER_QUERY = 'users/2';
 const IDEAS_QUERY = 'ideas';
 
 function RenderWidgets(props) {
@@ -41,6 +41,8 @@ class App extends Component {
       },
       ideas: [],
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -66,6 +68,32 @@ class App extends Component {
     });
   }
 
+  handleChange(event) {
+    console.log('New Idea')
+
+    fetch(API + IDEAS_QUERY, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: 'New Idea',
+        user_id: this.state.user.id,
+      })
+    })
+      .then(response => response.json())
+      .then(idea => {
+        // console.log(`idea ${idea}`)
+        let newIdeas = this.state.ideas;
+
+        let ideaObject = JSON.parse(idea)
+        newIdeas.push(ideaObject)
+        this.setState({ ideas: newIdeas})
+        console.log(newIdeas)
+      });
+  }
+
   render() {
     return (
       <div className='app'>
@@ -80,6 +108,11 @@ class App extends Component {
         </div>
 
         <h1>Ideas</h1>
+
+        <NewWidgetButton
+          onChange = { this.handleChange }
+        />
+
         <RenderWidgets
           ideas = { this.state.ideas }
         />
