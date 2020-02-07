@@ -37,6 +37,19 @@ body {
 }
 
 /**********************************************************
+ * Ideas bar
+ */
+.ideas_bar {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 120px; 
+}
+
+.saved_notification {
+    font-size: 1.3em;
+}
+
+/**********************************************************
  * Widget
  */
 .widgets {

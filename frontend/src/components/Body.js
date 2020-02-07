@@ -9,6 +9,7 @@ class Body extends Component {
 
         this.state = {
             id: 'body_' + this.props.id,
+            text: this.props.text,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -19,18 +20,22 @@ class Body extends Component {
     }
 
     handleChange(event) {
-        document.getElementById(this.state.id).value = event.target.value;
+        if (this.state.text !== event.target.value) {
+            this.setState({text: event.target.value})
 
-        fetch(API + this.props.id, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                body: event.target.value,
+            fetch(API + this.props.id, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    body: event.target.value,
+                })
             })
-        })
+
+            this.props.onWidgetChange();
+        }
     }
 
     render() {

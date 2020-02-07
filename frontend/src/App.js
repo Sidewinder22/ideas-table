@@ -1,34 +1,12 @@
 import React, { Component } from 'react';
 import './index.css';
-import Widget from './components/Widget';
 import NewWidgetButton from './components/NewWidgetButton';
+import SavedNotification from './components/SavedNotification';
+import { RenderWidgets } from './RenderWidgets';
 
 const API = 'http://127.0.0.1:5000/api/' ;
 const USER_QUERY = 'users/2';
 const IDEAS_QUERY = 'ideas';
-
-function RenderWidgets(props) {
-  const ideas = props.ideas;
-
-  const result = ideas.map((idea) =>  {
-      return (<Widget
-        id = { idea.id }
-        key = { idea.id }
-        title= { idea.title }
-        category = { idea.category }
-        body = { idea.body }
-        timestamp = { idea.timestamp }
-        onCloseButtonChange = { props.onCloseButtonChange }
-      />
-      );}
-  );
-
-  return (
-    <div className='widgets'>
-      { result }
-    </div> 
-  );
-}
 
 class App extends Component {
   constructor(props) {
@@ -41,12 +19,17 @@ class App extends Component {
         email: '',
       },
       ideas: [],
+      savedNotifCallback: null,
     };
 
     this.handleNewWidgetButtonChange = 
       this.handleNewWidgetButtonChange.bind(this);
     this.handleCloseButtonChange = 
       this.handleCloseButtonChange.bind(this);
+    this.handleWidgetChange = 
+      this.handleWidgetChange.bind(this);
+    this.handleSavedNotifCallback = 
+      this.handleSavedNotifCallback.bind(this);
   }
 
   componentDidMount() {
@@ -124,6 +107,16 @@ class App extends Component {
       })
   }
 
+  handleWidgetChange() {
+    if (this.state.savedNotifCallback != null) {
+      this.state.savedNotifCallback();
+    }
+  }
+
+  handleSavedNotifCallback(callback) {
+    this.setState({savedNotifCallback: callback});
+  }
+
   render() {
     return (
       <div className='app'>
@@ -137,15 +130,22 @@ class App extends Component {
           </p>
         </div>
 
-        <h1>Ideas</h1>
+        <div className='ideas_bar'>
+          <SavedNotification
+            savedNotifCallback = { this.handleSavedNotifCallback }
+          />
 
-        <NewWidgetButton
-          onChange = { this.handleNewWidgetButtonChange }
-        />
+          <h1>Ideas</h1>
+
+          <NewWidgetButton
+            onChange = { this.handleNewWidgetButtonChange }
+          />
+        </div>
 
         <RenderWidgets
           ideas = { this.state.ideas }
           onCloseButtonChange = { this.handleCloseButtonChange }
+          onWidgetChange = { this.handleWidgetChange }
         />
       </div>
     );

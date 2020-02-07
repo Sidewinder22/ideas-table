@@ -32,6 +32,7 @@ class Widget extends Component {
                     <Title
                         id = { this.props.id }
                         text = { this.props.title }
+                        onWidgetChange = { this.props.onWidgetChange }
                     />
                     <CloseButton
                         id = { this.props.id }
@@ -41,10 +42,12 @@ class Widget extends Component {
                <Category
                     id = { this.props.id }
                     text = { this.props.category }
+                    onWidgetChange = { this.props.onWidgetChange }
                 />
                 <Body
                     id = { this.props.id }
                     text = { this.props.body }
+                    onWidgetChange = { this.props.onWidgetChange }
                 />
                 <Timestamp
                     timestamp = { this.props.timestamp }
