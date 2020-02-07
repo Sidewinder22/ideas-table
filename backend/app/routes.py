@@ -98,7 +98,13 @@ def delete_idea(number):
     Idea.query.filter_by(id=number).delete()
     db.session.commit()
 
-    return {}
+    try:
+        idDict = {'id': number}
+        result = json.dumps(idDict)
+    except Exception as err:
+        print("Get delete_idea error: {0}".format(err))
+
+    return jsonify(result)
 
 ########### Free Functions ############
 def convert_idea_to_json(idea):

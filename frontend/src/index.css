@@ -60,9 +60,19 @@ body {
     flex-direction: column;
 }
 
+.widget .title_bar {
+    display: flex;
+    flex-direction: row;
+}
+
 .widget .title {
     display: flex;
     justify-content: center;
+    padding: 5px;
+}
+
+.widget .id {
+    margin-top: 5px;
     padding: 5px;
 }
 
@@ -83,4 +93,8 @@ body {
     justify-content: flex-end;
     margin-top: 10px;
     font-size: 0.8em;
+}
+
+.widget .close_button {
+    color: red;
 }
