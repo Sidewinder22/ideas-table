@@ -34,6 +34,8 @@ class Category extends Component {
                     category: event.target.value,
                 })
             })
+
+            this.props.onWidgetChange();
         }
     }
 

@@ -33,6 +33,8 @@ class Body extends Component {
                     body: event.target.value,
                 })
             })
+
+            this.props.onWidgetChange();
         }
     }
 

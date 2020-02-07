@@ -34,6 +34,8 @@ class Title extends Component {
                     title: event.target.value,
                 })
             })
+
+            this.props.onWidgetChange();
         }
     }
 
