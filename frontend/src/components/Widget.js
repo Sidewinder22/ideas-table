@@ -16,6 +16,7 @@ class Widget extends Component {
     render() {
         return (
             <div className='widget'>
+                id: { this.props.id }
                 <Title
                     id = { this.props.id }
                     text = { this.props.title }/>

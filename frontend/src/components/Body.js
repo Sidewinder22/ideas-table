@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../index.css';
 
-const API = 'http://127.0.0.1:5000/api/idea/' ;
+const API = 'http://127.0.0.1:5000/api/ideas/' ;
 
 class Body extends Component {
     constructor(props) {
