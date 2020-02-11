@@ -4,7 +4,8 @@ import NewWidgetButton from './components/NewWidgetButton';
 import SavedNotification from './components/SavedNotification';
 import { RenderWidgets } from './RenderWidgets';
 
-const API = 'http://127.0.0.1:5000/api/' ;
+// const API = 'http://127.0.0.1:5000/api/' ;
+const API = 'https://ideas.api.sidewinder22.pl/api/' ;
 const USER_QUERY = 'users/2';
 const IDEAS_QUERY = 'ideas';
 

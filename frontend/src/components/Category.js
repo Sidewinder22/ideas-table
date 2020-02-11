@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import '../index.css';
 import InputText from './InputText';
 
-const API = 'http://127.0.0.1:5000/api/ideas/' ;
+//const API = 'http://127.0.0.1:5000/api/ideas/' ;
+const API = 'https://ideas.api.sidewinder22.pl/api/ideas/' ;
 
 class Category extends Component {
     constructor(props) {

@@ -17,6 +17,10 @@ $ (venv) pip install flask-migrate
 
 $ (venv) pip install python-dotenv
 
+$ (venv) pip install wheel
+
+$ (venv) pip install uwsgi
+
 ### DataBase
 $ (venv) flask db migrate -m "users table"
 $ (venv) flask db upgrade
