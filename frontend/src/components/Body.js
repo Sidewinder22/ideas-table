@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import '../index.css';
 
 //const API = 'http://127.0.0.1:5000/api/ideas/' ;
-const API = 'http://167.172.183.173:5000/api/ideas/' ;
-
+const API = 'https://ideas.api.sidewinder22.pl/api/ideas/' ;
 class Body extends Component {
     constructor(props) {
         super(props);
