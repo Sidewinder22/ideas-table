@@ -41,14 +41,14 @@ class App extends Component {
 
         <Header />
 
-        <Aside 
-          user = { this.state.user } 
-        />
-
         <Nav />
-
+        
         <Main 
           user_id = { this.state.user.id }
+        />
+
+        <Aside 
+          user = { this.state.user } 
         />
 
         <Footer />

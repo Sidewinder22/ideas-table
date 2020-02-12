@@ -17,39 +17,85 @@ body {
 /************************** APP ***************************
  *                      <header></header>
  *
- *  <aside>                 <main>                  <nav>
- *   user                                         category
+ *  <nav>                 <main>                  <aside>
+ * category                                         user
  *               <Widget/> <Widget/> <Widget/>
- *   info                                            info
- *  </aside>                </main>                 </nav>
+ *   info                                           info
+ *  </nav>                </main>                 </aside>
  *
  *                      <footer></footer>
 **********************************************************/
 
 .app {
+    /*display: flex;
+    flex-direction: column;
+    align-items: center;*/
+    display: grid;
+
+    grid-template-areas:
+        "header header header"
+        "nav content side"     
+        "footer footer foooter";
+    
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 10px;
+
+    height: 100vh;
+}
+
+header {
+    grid-area: header;
+    border: 1px solid red;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+nav {
+    grid-area: nav;
+    border: 1px solid orange;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-header {
-    border: 1px solid red;
-}
-
-nav {
-    border: 1px solid orange;
+nav ul {
+    list-style: none;
 }
 
 main {
+    grid-area: content;
     border: 1px solid green;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 aside {
+    grid-area: side;
     border: 1px solid purple;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+aside ul {
+    list-style: none;
 }
 
 footer {
+    grid-area: footer;
     border: 1px solid blue;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /**********************************************************
@@ -139,4 +185,30 @@ footer {
 
 .widget .close_button {
     color: red;
+}
+
+/**********************************************************
+ * Media
+ */
+@media (max-width: 768px) {
+    .app {
+        grid-template-areas:
+            "header"
+            "nav"
+            "content"
+            "side"
+            "footer";
+
+        grid-template-columns: 1fr;
+        grid-template-rows:
+            auto                    /* Header */
+            minmax(75px, auto)      /* Nav */  
+            1fr                     /* Content */
+            minmax(75px, auto)      /* Sidebar */
+            auto;                   /* Footer */
+    }
+
+    nav, aside {
+        margin: 0;
+    }
 }
