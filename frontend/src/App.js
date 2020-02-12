@@ -3,11 +3,12 @@ import './index.css';
 import NewWidgetButton from './components/NewWidgetButton';
 import SavedNotification from './components/SavedNotification';
 import { RenderWidgets } from './RenderWidgets';
+import { SortList } from './components/SortList';
 
-// const API = 'http://127.0.0.1:5000/api/' ;
-const API = 'https://ideas.api.sidewinder22.pl/api/' ;
+export const API = 'http://127.0.0.1:5000/api/' ;
+// export const API = 'https://ideas.api.sidewinder22.pl/api/' ;
 const USER_QUERY = 'users/2';
-const IDEAS_QUERY = 'ideas';
+export const IDEAS_QUERY = 'ideas';
 
 class App extends Component {
   constructor(props) {
@@ -31,6 +32,8 @@ class App extends Component {
       this.handleWidgetChange.bind(this);
     this.handleSavedNotifCallback = 
       this.handleSavedNotifCallback.bind(this);
+    this.handleSortList =
+      this.handleSortList.bind(this);
   }
 
   componentDidMount() {
@@ -118,6 +121,76 @@ class App extends Component {
     this.setState({savedNotifCallback: callback});
   }
 
+  handleSortList(event) {
+    let sortedIdeas = this.state.ideas;
+
+    if (event.target.value === 'ID') {
+      sortedIdeas.sort((a, b) => {
+        let result = 0;
+
+        if (a.id < b.id) {
+          result = -1;
+        }
+        else if (a.id > b.id) {
+          result = 1;
+        }
+
+        return result;
+      });
+
+      this.setState({ideas: sortedIdeas});
+    }
+    else if (event.target.value === 'Title') {
+      sortedIdeas.sort((a, b) => {
+        let result = 0;
+
+        if (a.title < b.title) {
+          result = -1;
+        }
+        else if (a.title > b.title) {
+          result = 1;
+        }
+
+        return result;
+      });
+
+      this.setState({ideas: sortedIdeas});
+    }
+    else if (event.target.value === 'Category') {
+      sortedIdeas.sort((a, b) => {
+        let result = 0;
+
+        if (a.category < b.category) {
+          result = -1;
+        }
+        else if (a.category > b.category) {
+          result = 1;
+        }
+
+        return result;
+      });
+    }
+    else if (event.target.value === 'Date') {
+      sortedIdeas.sort((a, b) => {
+        let result = 0;
+
+        a = new Date(a.timestamp);
+        b = new Date(b.timestamp);
+        if (a < b) {
+          result = 1;
+        }
+        else if (a > b) {
+          result = -1;
+        }
+
+        return result;
+      });
+    }
+
+    this.setState({ideas: sortedIdeas});
+    
+  }
+
   render() {
     return (
       <div className='app'>
@@ -141,6 +214,10 @@ class App extends Component {
           <NewWidgetButton
             onChange = { this.handleNewWidgetButtonChange }
           />
+
+          <SortList 
+            onChange = { this.handleSortList } 
+          /> 
         </div>
 
         <RenderWidgets

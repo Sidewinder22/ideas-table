@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import '../index.css';
 import InputText from './InputText';
-
-//const API = 'http://127.0.0.1:5000/api/ideas/' ;
-const API = 'https://ideas.api.sidewinder22.pl/api/ideas/' ;
+import { API, IDEAS_QUERY } from '../App';
 
 class Category extends Component {
     constructor(props) {
@@ -25,7 +23,7 @@ class Category extends Component {
         if (this.state.text !== event.target.value) {
             this.setState({text: event.target.value})
 
-            fetch(API + this.props.id, {
+            fetch(API + IDEAS_QUERY + '/' + this.props.id, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

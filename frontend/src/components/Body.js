@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import '../index.css';
+import { API, IDEAS_QUERY } from '../App';
 
-//const API = 'http://127.0.0.1:5000/api/ideas/' ;
-const API = 'https://ideas.api.sidewinder22.pl/api/ideas/' ;
 class Body extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +22,7 @@ class Body extends Component {
         if (this.state.text !== event.target.value) {
             this.setState({text: event.target.value})
 
-            fetch(API + this.props.id, {
+            fetch(API + IDEAS_QUERY + '/' + this.props.id, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
