@@ -14,7 +14,7 @@ export function MainNavbar(props) {
             <h1>Ideas</h1>
 
             <NewWidgetButton
-            onChange = { props.NewWidgetButtonChange }
+            onChange = { props.newWidgetButtonChange }
             />
 
             <SortList 

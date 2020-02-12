@@ -27,15 +27,12 @@ body {
 **********************************************************/
 
 .app {
-    /*display: flex;
-    flex-direction: column;
-    align-items: center;*/
     display: grid;
 
     grid-template-areas:
         "header header header"
         "nav content side"     
-        "footer footer foooter";
+        "footer footer footer";
     
     grid-template-columns: 200px 1fr 200px;
     grid-template-rows: auto 1fr auto;
@@ -46,21 +43,25 @@ body {
 
 header {
     grid-area: header;
-    border: 1px solid red;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    color: #33CC33;  
+    background-color: #000000;  
 
 }
 
 nav {
     grid-area: nav;
-    border: 1px solid orange;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    color: #333333;  
+    background-color: #e6ffcc; 
 }
 
 nav ul {
@@ -69,20 +70,23 @@ nav ul {
 
 main {
     grid-area: content;
-    border: 1px solid green;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    background-color: #ffffe6;
 }
 
 aside {
     grid-area: side;
-    border: 1px solid purple;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    color: #333333;  
+    background-color: #e6ffcc; 
 }
 
 aside ul {
@@ -91,11 +95,13 @@ aside ul {
 
 footer {
     grid-area: footer;
-    border: 1px solid blue;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    color: #33CC33;  
+    background-color: #000000;  
 }
 
 /**********************************************************
@@ -202,9 +208,9 @@ footer {
         grid-template-columns: 1fr;
         grid-template-rows:
             auto                    /* Header */
-            minmax(75px, auto)      /* Nav */  
+            minmax(100px, auto)      /* Nav */  
             1fr                     /* Content */
-            minmax(75px, auto)      /* Sidebar */
+            minmax(100px, auto)      /* Sidebar */
             auto;                   /* Footer */
     }
 
