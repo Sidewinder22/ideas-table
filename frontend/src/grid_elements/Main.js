@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../index.css';
-import { sortWidgets } from '../components/SortWidgets';
+import { sortWidgets } from '../tools/sortWidgets';
 import { RenderWidgets } from '../RenderWidgets';
 import { API, IDEAS_QUERY} from '../App';
 import { MainNavbar } from '../components/MainNavbar';
