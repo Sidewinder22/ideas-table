@@ -4,6 +4,10 @@ import NewWidgetButton from './components/NewWidgetButton';
 import SavedNotification from './components/SavedNotification';
 import { RenderWidgets } from './RenderWidgets';
 import { SortList } from './components/SortList';
+import { Header } from './grid_elements/Header';
+import { Aside } from './grid_elements/Aside';
+import { Nav } from './grid_elements/Nav';
+import { Footer } from './grid_elements/Footer';
 
 export const API = 'http://127.0.0.1:5000/api/' ;
 // export const API = 'https://ideas.api.sidewinder22.pl/api/' ;
@@ -194,37 +198,40 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        <h1>IDeas Table</h1>
-        <div className='user'>
-          <h2>User</h2>
-          <p>
-            user: { this.state.user.username},
-            id: { this.state.user.id },
-            email: { this.state.user.email }
-          </p>
-        </div>
 
-        <div className='ideas_bar'>
-          <SavedNotification
-            savedNotifCallback = { this.handleSavedNotifCallback }
-          />
+        <Header />
 
-          <h1>Ideas</h1>
-
-          <NewWidgetButton
-            onChange = { this.handleNewWidgetButtonChange }
-          />
-
-          <SortList 
-            onChange = { this.handleSortList } 
-          /> 
-        </div>
-
-        <RenderWidgets
-          ideas = { this.state.ideas }
-          onCloseButtonChange = { this.handleCloseButtonChange }
-          onWidgetChange = { this.handleWidgetChange }
+        <Aside 
+          user = { this.state.user } 
         />
+
+        <Nav />
+
+        <main>
+          <div className='ideas_bar'>
+            <SavedNotification
+              savedNotifCallback = { this.handleSavedNotifCallback }
+            />
+
+            <h1>Ideas</h1>
+
+            <NewWidgetButton
+              onChange = { this.handleNewWidgetButtonChange }
+            />
+
+            <SortList 
+              onChange = { this.handleSortList } 
+            /> 
+          </div>
+
+          <RenderWidgets
+            ideas = { this.state.ideas }
+            onCloseButtonChange = { this.handleCloseButtonChange }
+            onWidgetChange = { this.handleWidgetChange }
+          />
+        </main>
+
+        <Footer />
       </div>
     );
   }

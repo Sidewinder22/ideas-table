@@ -14,13 +14,42 @@ body {
     font-family: 'Cadman', sans-serif;
 }
 
-/**********************************************************
- * App
- */
+/************************** APP ***************************
+ *                      <header></header>
+ *
+ *  <aside>                 <main>                  <nav>
+ *   user                                         category
+ *               <Widget/> <Widget/> <Widget/>
+ *   info                                            info
+ *  </aside>                </main>                 </nav>
+ *
+ *                      <footer></footer>
+**********************************************************/
+
 .app {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+header {
+    border: 1px solid red;
+}
+
+nav {
+    border: 1px solid orange;
+}
+
+main {
+    border: 1px solid green;
+}
+
+aside {
+    border: 1px solid purple;
+}
+
+footer {
+    border: 1px solid blue;
 }
 
 /**********************************************************
@@ -30,7 +59,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 10px;
