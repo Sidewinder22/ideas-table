@@ -40,7 +40,7 @@ export class Main extends Component {
             });
     }
 
-    handleNewWidgetButtonChange(event) {
+    handleNewWidgetButtonChange() {
         fetch(API + IDEAS_QUERY, {
         method: 'POST',
         headers: {

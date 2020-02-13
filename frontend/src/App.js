@@ -22,6 +22,8 @@ class App extends Component {
         email: '',
       },
     };
+
+    this.handleCategoryClick = this.handleCategoryClick.bind(this);
   }
 
   componentDidMount() {
@@ -35,13 +37,19 @@ class App extends Component {
       .then(user => this.setState({ user }));
   }
 
+  handleCategoryClick(event) {
+    console.log(`handleCategoryClick: ${event.target.value}`)
+  }
+
   render() {
     return (
       <div className='app'>
 
         <Header />
 
-        <Nav />
+        <Nav
+          onCategoryClick = { this.handleCategoryClick }
+        />
         
         <Main 
           user_id = { this.state.user.id }

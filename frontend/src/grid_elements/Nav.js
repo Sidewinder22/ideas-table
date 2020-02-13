@@ -11,6 +11,8 @@ export class Nav extends Component {
         this.state = {
             categories: [],
         }
+
+        // this.handle = this.handle.bind(this);
     }
 
     componentDidMount() {
@@ -33,7 +35,9 @@ export class Nav extends Component {
         let categories_list = this.state.categories.map((category, index) => {
             return (
                 <div key={index}>
-                    <li>{ category }</li>
+                    <li>
+                        <button value={ category } onClick={ this.props.onCategoryClick }>{ category }</button>
+                    </li>
                 </div>
             );
         });
