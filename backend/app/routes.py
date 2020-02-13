@@ -1,4 +1,4 @@
-from flask import jsonify, json, request
+from flask import jsonify, json, request, session
 from app.models import User, Idea
 from app import db
 from app import app
@@ -6,7 +6,7 @@ from app import app
 @app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET'])
 def index():
-    return '<h1>IDeas Table Backed</h1>'
+    return '<h1>IDeas Table</h1>'
 
 @app.route('/api/users/<number>', methods=['GET'])
 def get_user(number):
@@ -68,6 +68,32 @@ def get_ideas():
 
     except Exception as err:
         print("Get ideas error: {0}".format(err))
+
+    return jsonify(jsonStr)
+
+@app.route('/api/categories', methods=['GET'])
+def get_categories():
+    ideas = Idea.query.all()
+    jsonStr = ''
+    categorySet = set()
+
+    try:
+        for idea in ideas:
+            categorySet.add(idea.category)
+
+        tempDict = {}
+        tempList = []
+        for element in categorySet:
+            tempList.append(element)
+
+        tempDict['categories'] = tempList
+        # categoryList = list(tempDict)
+
+        # jsonStr = json.dumps(categoryList)
+        jsonStr = json.dumps(tempList)
+
+    except Exception as err:
+        print("Get categories error: {0}".format(err))
 
     return jsonify(jsonStr)
 
