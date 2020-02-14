@@ -27,7 +27,11 @@ export class Main extends Component {
     }
 
     componentDidMount() {
-        fetch(API + IDEAS_QUERY, {
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
+    }
+
+    fetchAndUpdateIdeas(url) {
+        fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -95,6 +99,16 @@ export class Main extends Component {
     handleSortList(event) {
         let sortedIdeas = sortWidgets(this.state.ideas, event); 
         this.setState({ideas: sortedIdeas});
+    }
+
+    displaySpecificCategory(category) {
+        console.log(`displaySpecificCategory`)
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY + '?category=' + category);
+    }
+
+    cleanSpecificCategory() {
+        console.log(`cleanSpecificCategory`)
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
     }
 
     render() {

@@ -205,6 +205,12 @@ footer {
     margin: 5px;
 }
 
+.clean_cat_button {
+    margin: 20px;
+    font-size: 1em;
+    color: red;
+}
+
 /**********************************************************
  * Media
  */
@@ -220,13 +226,13 @@ footer {
         grid-template-columns: 1fr;
         grid-template-rows:
             auto                    /* Header */
-            minmax(100px, auto)      /* Nav */  
+            minmax(auto, auto)      /* Nav */  
             1fr                     /* Content */
-            minmax(100px, auto)      /* Sidebar */
+            minmax(auto, auto)      /* Sidebar */
             auto;                   /* Footer */
     }
 
-    nav, aside {
+    aside {
         margin: 0;
         height: auto;
     }
@@ -252,5 +258,12 @@ footer {
 
     .category_button {
         margin: 5px;
+    }
+
+
+    .clean_cat_button {
+        margin: 5px;
+        font-size: 1em;
+        color: red;
     }
 }

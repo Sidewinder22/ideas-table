@@ -23,7 +23,12 @@ class App extends Component {
       },
     };
 
-    this.handleCategoryClick = this.handleCategoryClick.bind(this);
+    this.mainElement = React.createRef();
+
+    this.handleSpecificCategoryClick =
+      this.handleSpecificCategoryClick.bind(this);
+    this.handleCleanSpecificCategoryClick =
+      this.handleCleanSpecificCategoryClick.bind(this);
   }
 
   componentDidMount() {
@@ -37,8 +42,13 @@ class App extends Component {
       .then(user => this.setState({ user }));
   }
 
-  handleCategoryClick(event) {
-    console.log(`handleCategoryClick: ${event.target.value}`)
+  handleSpecificCategoryClick(event) {
+    this.mainElement.current.displaySpecificCategory(event.target.value);
+  }
+  
+  handleCleanSpecificCategoryClick() {
+    console.log('22')
+    this.mainElement.current.cleanSpecificCategory();
   }
 
   render() {
@@ -48,10 +58,12 @@ class App extends Component {
         <Header />
 
         <Nav
-          onCategoryClick = { this.handleCategoryClick }
+          onSpecificCategoryClick = { this.handleSpecificCategoryClick }
+          onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
         />
         
         <Main 
+          ref = { this.mainElement }
           user_id = { this.state.user.id }
         />
 

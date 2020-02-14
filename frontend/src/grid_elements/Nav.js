@@ -30,21 +30,23 @@ export class Nav extends Component {
     }
 
     showCategories() {
-        let categories_list = this.state.categories.map((category, index) => {
+        let categories = this.state.categories.map((category, index) => {
             return (
                 <div key={index}>
-                    {/* <li> */}
-                        <button className='category_button' value={ category } onClick={ this.props.onCategoryClick }>{ category }</button>
-                    {/* </li> */}
+                    <button
+                        className='category_button'
+                        value={ category } 
+                        onClick={ this.props.onSpecificCategoryClick }
+                    >
+                        { category }
+                    </button>
                 </div>
             );
         });
 
         return (
             <div className='nav_category'>
-                {/* <ul> */}
-                    { categories_list }
-                {/* </ul> */}
+                { categories }
             </div>
         );
     }
@@ -52,7 +54,8 @@ export class Nav extends Component {
     render() {
         return (
             <nav>
-            <h2>Category</h2>
+                <h2>Category</h2>
+                <button className='clean_cat_button' onClick={ this.props.onCleanSpecificCategoryClick }>Clean category</button>
                 { this.showCategories() }
             </nav>
         );
