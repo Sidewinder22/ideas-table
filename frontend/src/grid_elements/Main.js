@@ -14,14 +14,14 @@ export class Main extends Component {
         savedNotifCallback: null,
         };
 
+        this.mainNavbarElement = React.createRef();
+
         this.handleNewWidgetButtonChange = 
         this.handleNewWidgetButtonChange.bind(this);
         this.handleCloseButtonChange = 
         this.handleCloseButtonChange.bind(this);
         this.handleWidgetChange = 
         this.handleWidgetChange.bind(this);
-        this.handleSavedNotifCallback = 
-        this.handleSavedNotifCallback.bind(this);
         this.handleSortList =
         this.handleSortList.bind(this);
     }
@@ -89,13 +89,7 @@ export class Main extends Component {
     }
 
     handleWidgetChange() {
-        if (this.state.savedNotifCallback != null) {
-        this.state.savedNotifCallback();
-        }
-    }
-
-    handleSavedNotifCallback(callback) {
-        this.setState({savedNotifCallback: callback});
+        this.mainNavbarElement.current.showNotification();
     }
 
     handleSortList(event) {
@@ -107,7 +101,7 @@ export class Main extends Component {
         return (
             <main>
                 <MainNavbar 
-                    savedNotifCallback = { this.handleSavedNotifCallback }
+                    ref = { this.mainNavbarElement }
                     newWidgetButtonChange = { this.handleNewWidgetButtonChange }
                     onSortListChange = { this.handleSortList } 
                 />

@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../index.css';
-import NewWidgetButton from '../components/NewWidgetButton';
-import SavedNotification from '../components/SavedNotification';
+import { NewWidgetButton } from '../components/NewWidgetButton';
+import { SavedNotification } from '../components/SavedNotification';
 import { SortList } from '../components/SortList';
 
-export function MainNavbar(props) {
-    return (
-        <div className='ideas_bar'>
-            <SavedNotification
-            savedNotifCallback = { props.savedNotifCallback }
-            />
+export class MainNavbar extends Component {
+    constructor(props) {
+        super(props)
 
-            <h1>Ideas</h1>
+        this.savedNotificationElement = React.createRef();
+    }
 
-            <NewWidgetButton
-            onChange = { props.newWidgetButtonChange }
-            />
+    showNotification() {
+        this.savedNotificationElement.current.showNotification();
+    }
 
-            <SortList 
-            onChange = { props.onSortListChange } 
-            /> 
-        </div>
-    );
+    render() {
+        return (
+            <div className='ideas_bar'>
+                <SavedNotification
+                ref = { this.savedNotificationElement }
+                />
+
+                <h1>Ideas</h1>
+
+                <NewWidgetButton
+                onChange = { this.props.newWidgetButtonChange }
+                />
+
+                <SortList 
+                onChange = { this.props.onSortListChange } 
+                /> 
+            </div>
+        );
+    }
 }
