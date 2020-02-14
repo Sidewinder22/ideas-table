@@ -22,6 +22,13 @@ class App extends Component {
         email: '',
       },
     };
+
+    this.mainElement = React.createRef();
+
+    this.handleSpecificCategoryClick =
+      this.handleSpecificCategoryClick.bind(this);
+    this.handleCleanSpecificCategoryClick =
+      this.handleCleanSpecificCategoryClick.bind(this);
   }
 
   componentDidMount() {
@@ -35,15 +42,28 @@ class App extends Component {
       .then(user => this.setState({ user }));
   }
 
+  handleSpecificCategoryClick(event) {
+    this.mainElement.current.displaySpecificCategory(event.target.value);
+  }
+  
+  handleCleanSpecificCategoryClick() {
+    console.log('22')
+    this.mainElement.current.cleanSpecificCategory();
+  }
+
   render() {
     return (
       <div className='app'>
 
         <Header />
 
-        <Nav />
+        <Nav
+          onSpecificCategoryClick = { this.handleSpecificCategoryClick }
+          onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
+        />
         
         <Main 
+          ref = { this.mainElement }
           user_id = { this.state.user.id }
         />
 

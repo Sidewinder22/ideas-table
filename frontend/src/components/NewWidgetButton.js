@@ -1,7 +1,7 @@
 import React from 'react';
 import '../index.css'
 
-function NewWidgetButton(props) {
+export function NewWidgetButton(props) {
     return (
         <div className='new_widget_button'>
             <button onClick={ props.onChange }>
@@ -10,5 +10,3 @@ function NewWidgetButton(props) {
         </div>
     );
 }
-
-export default NewWidgetButton;

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import '../index.css';
 
-class SavedNotification extends Component {
-    constructor(props) {
-        super(props);
-
-        this.showNotification = this.showNotification.bind(this);
-        this.props.savedNotifCallback(this.showNotification);
-    }
-
+export class SavedNotification extends Component {
     componentDidMount() {
         document.getElementById('saved_notif_label').style = 'visibility:hidden';
     }
+
     showNotification() {
         document.getElementById('saved_notif_label').style = 'visibility:visible';
 
@@ -31,5 +25,3 @@ class SavedNotification extends Component {
         )
     }
 }
-
-export default SavedNotification;

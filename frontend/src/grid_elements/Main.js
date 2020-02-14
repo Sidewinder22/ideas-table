@@ -14,20 +14,24 @@ export class Main extends Component {
         savedNotifCallback: null,
         };
 
+        this.mainNavbarElement = React.createRef();
+
         this.handleNewWidgetButtonChange = 
         this.handleNewWidgetButtonChange.bind(this);
         this.handleCloseButtonChange = 
         this.handleCloseButtonChange.bind(this);
         this.handleWidgetChange = 
         this.handleWidgetChange.bind(this);
-        this.handleSavedNotifCallback = 
-        this.handleSavedNotifCallback.bind(this);
         this.handleSortList =
         this.handleSortList.bind(this);
     }
 
     componentDidMount() {
-        fetch(API + IDEAS_QUERY, {
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
+    }
+
+    fetchAndUpdateIdeas(url) {
+        fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -40,7 +44,7 @@ export class Main extends Component {
             });
     }
 
-    handleNewWidgetButtonChange(event) {
+    handleNewWidgetButtonChange() {
         fetch(API + IDEAS_QUERY, {
         method: 'POST',
         headers: {
@@ -89,13 +93,7 @@ export class Main extends Component {
     }
 
     handleWidgetChange() {
-        if (this.state.savedNotifCallback != null) {
-        this.state.savedNotifCallback();
-        }
-    }
-
-    handleSavedNotifCallback(callback) {
-        this.setState({savedNotifCallback: callback});
+        this.mainNavbarElement.current.showNotification();
     }
 
     handleSortList(event) {
@@ -103,11 +101,21 @@ export class Main extends Component {
         this.setState({ideas: sortedIdeas});
     }
 
+    displaySpecificCategory(category) {
+        console.log(`displaySpecificCategory`)
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY + '?category=' + category);
+    }
+
+    cleanSpecificCategory() {
+        console.log(`cleanSpecificCategory`)
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
+    }
+
     render() {
         return (
             <main>
                 <MainNavbar 
-                    savedNotifCallback = { this.handleSavedNotifCallback }
+                    ref = { this.mainNavbarElement }
                     newWidgetButtonChange = { this.handleNewWidgetButtonChange }
                     onSortListChange = { this.handleSortList } 
                 />
