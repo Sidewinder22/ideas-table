@@ -52,9 +52,17 @@ def edit_idea(number):
 
     return jsonify(data)
 
+
 @app.route('/api/ideas', methods=['GET'])
 def get_ideas():
-    ideas = Idea.query.all()
+    category = request.args.get('category')
+
+    ideas = []
+    if category:
+        ideas = Idea.query.filter_by(category = category)
+    else:
+        ideas = Idea.query.all()
+
     jsonStr = ''
     ideasList = []
 
@@ -87,9 +95,6 @@ def get_categories():
             tempList.append(element)
 
         tempDict['categories'] = tempList
-        # categoryList = list(tempDict)
-
-        # jsonStr = json.dumps(categoryList)
         jsonStr = json.dumps(tempList)
 
     except Exception as err:

@@ -11,8 +11,6 @@ export class Nav extends Component {
         this.state = {
             categories: [],
         }
-
-        // this.handle = this.handle.bind(this);
     }
 
     componentDidMount() {
