@@ -8,7 +8,7 @@ import { Main } from './grid_elements/Main';
 
 export const API = 'http://127.0.0.1:5000/api/' ;
 // export const API = 'https://ideas.api.sidewinder22.pl/api/' ;
-const USER_QUERY = 'users/3';
+const USER_QUERY = 'users/1';
 export const IDEAS_QUERY = 'ideas';
 
 class App extends Component {

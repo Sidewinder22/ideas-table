@@ -41,6 +41,10 @@ export class Main extends Component {
             .then(ideas =>  {
             let ideasObject = JSON.parse(ideas)
             this.setState({ ideas: ideasObject })
+            })
+            .catch(error => {
+                console.error(error);
+                return { name: "network error", description: ""};
             });
     }
 

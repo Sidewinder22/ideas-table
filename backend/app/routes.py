@@ -1,4 +1,5 @@
 from flask import jsonify, json, request, session
+from flask_jwt import jwt_required, current_identity
 from app.models import User, Idea
 from app import db
 from app import app
@@ -8,21 +9,8 @@ from app import app
 def index():
     return '<h1>IDeas Table</h1>'
 
-@app.route('/login', methods=['POST'])
-def login():
-    data = request.get_json()
-    user = User.query.filter_by(username = data['username']).first()
-
-    if user is None:
-        return {"info": "User doesn't exists!"}
-
-    if user.check_password(data['password']) is False:
-        return {"info": "!!! Wrong password !!!"}
-
-    return {"info": "User logged in"}
-
-
 @app.route('/api/users/<number>', methods=['GET'])
+@jwt_required()
 def get_user(number):
     user = User.query.get(number)
     if user is None:
@@ -35,14 +23,12 @@ def get_user(number):
     return result, {'Content-Type': 'application/json'}
 
 @app.route('/api/users', methods=['POST'])
+@jwt_required()
 def create_user():
     data = request.get_json()
-    print(data)
-
-    user = User(
-        username=data['username'],
-        email=data['email']
-        )
+    
+    user = User(username=data['username'],
+        email=data['email'])
     user.set_password(data['password'])
 
     db.session.add(user)
@@ -51,6 +37,7 @@ def create_user():
     return jsonify(data)
 
 @app.route('/api/users/<number>', methods=['DELETE'])
+@jwt_required()
 def delete_user(number):
     User.query.filter_by(id=number).delete()
     db.session.commit()
@@ -64,6 +51,7 @@ def delete_user(number):
     return jsonify(result)
 
 @app.route('/api/ideas/<number>', methods=['GET'])
+@jwt_required()
 def get_idea(number):
     idea = Idea.query.get(number)
     if idea is None:
@@ -79,6 +67,7 @@ def get_idea(number):
     return result, {'Content-Type': 'application/json'}
 
 @app.route('/api/ideas/<number>', methods=['POST'])
+@jwt_required()
 def edit_idea(number):
     data = request.get_json()
     idea = Idea.query.get(number)
@@ -95,9 +84,10 @@ def edit_idea(number):
 
     return jsonify(data)
 
-
 @app.route('/api/ideas', methods=['GET'])
+@jwt_required()
 def get_ideas():
+    print('get_ideas')
     category = request.args.get('category')
 
     ideas = []
@@ -123,6 +113,7 @@ def get_ideas():
     return jsonify(jsonStr)
 
 @app.route('/api/categories', methods=['GET'])
+@jwt_required()
 def get_categories():
     ideas = Idea.query.all()
     jsonStr = ''
@@ -146,6 +137,7 @@ def get_categories():
     return jsonify(jsonStr)
 
 @app.route('/api/ideas', methods=['POST'])
+@jwt_required()
 def create_idea():
     data = request.get_json()
     idea_user_id = 1
@@ -168,6 +160,7 @@ def create_idea():
     return convert_idea_to_json(idea)
 
 @app.route('/api/ideas/<number>', methods=['DELETE'])
+@jwt_required()
 def delete_idea(number):
     Idea.query.filter_by(id=number).delete()
     db.session.commit()

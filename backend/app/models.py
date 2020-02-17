@@ -29,3 +29,4 @@ class Idea(db.Model):
 
     def __repr__(self):
         return '<Idea {}>'.format(self.title)
+

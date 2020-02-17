@@ -26,7 +26,11 @@ export class Nav extends Component {
 
                 categoriesConverted.sort();                
                 this.setState({ categories: categoriesConverted });
-        });
+            })
+            .catch(error => {
+                console.error(error);
+                return { name: "network error", description: ""};
+            });
     }
 
     showCategories() {
