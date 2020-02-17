@@ -16,9 +16,11 @@ def login():
     if user is None:
         return {"info": "User doesn't exists!"}
 
-    # check for password match
-    
+    if user.check_password(data['password']) is False:
+        return {"info": "!!! Wrong password !!!"}
+
     return {"info": "User logged in"}
+
 
 @app.route('/api/users/<number>', methods=['GET'])
 def get_user(number):
@@ -31,6 +33,22 @@ def get_user(number):
         email=user.email
     )
     return result, {'Content-Type': 'application/json'}
+
+@app.route('/api/users', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    print(data)
+
+    user = User(
+        username=data['username'],
+        email=data['email']
+        )
+    user.set_password(data['password'])
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify(data)
 
 @app.route('/api/users/<number>', methods=['DELETE'])
 def delete_user(number):
