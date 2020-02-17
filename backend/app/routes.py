@@ -8,6 +8,18 @@ from app import app
 def index():
     return '<h1>IDeas Table</h1>'
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    user = User.query.filter_by(username = data['username']).first()
+
+    if user is None:
+        return {"info": "User doesn't exists!"}
+
+    # check for password match
+    
+    return {"info": "User logged in"}
+
 @app.route('/api/users/<number>', methods=['GET'])
 def get_user(number):
     user = User.query.get(number)
