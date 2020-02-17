@@ -32,6 +32,19 @@ def get_user(number):
     )
     return result, {'Content-Type': 'application/json'}
 
+@app.route('/api/users/<number>', methods=['DELETE'])
+def delete_user(number):
+    User.query.filter_by(id=number).delete()
+    db.session.commit()
+
+    try:
+        idDict = {'id': number}
+        result = json.dumps(idDict)
+    except Exception as err:
+        print("Get delete_idea error: {0}".format(err))
+
+    return jsonify(result)
+
 @app.route('/api/ideas/<number>', methods=['GET'])
 def get_idea(number):
     idea = Idea.query.get(number)
