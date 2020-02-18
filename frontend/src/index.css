@@ -206,6 +206,11 @@ footer {
     justify-content: space-around;
 }
 
+.welcome_screen {
+    margin-top: 75px;
+}
+
+
 /**********************************************************
  * Nav
  */
