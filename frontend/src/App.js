@@ -5,8 +5,9 @@ import { Aside } from './grid_elements/Aside';
 import { Nav } from './grid_elements/Nav';
 import { Footer } from './grid_elements/Footer';
 import { Main } from './grid_elements/Main';
-import { LoginScreen } from './components/LoginScreen';
+import { SignUpScreen } from './components/SignUpScreen';
 import { WelcomeScreen } from './components/WelcomeScreen';
+import { SignInScreen } from './components/SignInScreen';
 
 export const API = 'http://127.0.0.1:5000/api/' ;
 // export const API = 'https://ideas.api.sidewinder22.pl/api/' ;
@@ -24,6 +25,7 @@ class App extends Component {
         username: '',
         email: '',
       },
+      main: null,
     };
 
     this.mainElement = React.createRef();
@@ -39,6 +41,13 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.setState({main:
+        <WelcomeScreen
+        onSignUpClick = { this.handleSingUpClick }
+        onSignInClick = { this.handleSingInClick }
+      />
+    });
+
     fetch(API + USER_QUERY, {
       headers: {
         'Content-Type': 'application/json',
@@ -61,10 +70,17 @@ class App extends Component {
   handleSingUpClick(event) {
     console.log(`handleSingUpClick: ${event}`)
 
+    this.setState({main: 
+      <SignUpScreen />
+    });
   }
 
   handleSingInClick(event) {
     console.log(`handleSingInClick`)
+
+    this.setState({main:
+      <SignInScreen />
+    });
   }
 
   render() {
@@ -78,15 +94,7 @@ class App extends Component {
           onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
         />
 
-        <WelcomeScreen
-          onSignUpClick = { this.handleSingUpClick }
-          onSignInClick = { this.handleSingInClick }
-        />
-
-        {/* <LoginScreen
-          onSignUpClick = { this.handleSingUpClick }
-          onSignInClick = { this.handleSingInClick }
-        /> */}
+        { this.state.main }
         
         {/* <Main 
           ref = { this.mainElement }
