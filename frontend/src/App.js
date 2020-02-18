@@ -9,10 +9,12 @@ import { SignUpScreen } from './components/SignUpScreen';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { SignInScreen } from './components/SignInScreen';
 
-export const API = 'http://127.0.0.1:5000/api/' ;
-// export const API = 'https://ideas.api.sidewinder22.pl/api/' ;
+const BACKEND = 'http://127.0.0.1:5000/';
+// const BACKEND = 'https://ideas.api.sidewinder22.pl/api/';
+export const API = BACKEND + 'api/';
 const USER_QUERY = 'users/1';
 const USERS_QUERY = 'users';
+const AUTH_QUERY = 'auth';
 export const IDEAS_QUERY = 'ideas';
 
 class App extends Component {
@@ -105,7 +107,6 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
           let responseObject = JSON.parse(response)
-          console.log(`SignUp response ${response}`)
 
           if (responseObject.response == 'ok') {
             this.setState({
@@ -126,6 +127,21 @@ class App extends Component {
   handleSignInSubmit(username, password) {
     console.log(`App, handleSignInSubmit, username=${username}, pass=${password}`)
 
+    fetch(BACKEND + AUTH_QUERY,{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })})
+      .then(response => response.json())
+      .then(response => {
+          console.log(`SignIn response ${response.access_token}`)
+
+      });
   }
 
   render() {
