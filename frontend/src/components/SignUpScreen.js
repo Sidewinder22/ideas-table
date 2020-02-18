@@ -14,7 +14,7 @@ export class SignUpScreen extends Component {
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handleSubmitClick = this.handleSubmitClick.bind(this);
+        this.handleSubmitChange = this.handleSubmitChange.bind(this);
     }
 
     handleUsernameChange(event) {
@@ -35,8 +35,7 @@ export class SignUpScreen extends Component {
         });
     }
 
-    handleSubmitClick(event) {
-        console.log(`SingUp, handleSubmitClick`);
+    handleSubmitChange(event) {
         event.preventDefault()
 
         this.props.onSingUpSubmit(
@@ -50,7 +49,7 @@ export class SignUpScreen extends Component {
         return (
             <>
                 <h2>Sign Up</h2>
-                    <form onSubmit={ this.handleSubmitClick }>
+                    <form onSubmit={ this.handleSubmitChange }>
                         <div className='login_form'>
                             <label htmlFor='username'>Username</label>
                             <input 

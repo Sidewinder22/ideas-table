@@ -43,6 +43,8 @@ class App extends Component {
 
     this.handleSignUpSubmit = 
       this.handleSignUpSubmit.bind(this);
+    this.handleSignInSubmit = 
+      this.handleSignInSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -82,7 +84,9 @@ class App extends Component {
 
   handleSingInClick() {
     this.setState({main:
-      <SignInScreen />
+      <SignInScreen
+        onSignInSubmit = { this.handleSignInSubmit }
+      />
     });
   }
 
@@ -105,7 +109,9 @@ class App extends Component {
 
           if (responseObject.response == 'ok') {
             this.setState({
-              main: <SignInScreen />,
+              main: <SignInScreen
+                onSignInSubmit = { this.handleSignInSubmit }
+              />,
               errors: null,
             });
           }
@@ -114,8 +120,12 @@ class App extends Component {
               errors: responseObject.response
             });
           }
-
       })
+  }
+
+  handleSignInSubmit(username, password) {
+    console.log(`App, handleSignInSubmit, username=${username}, pass=${password}`)
+
   }
 
   render() {
