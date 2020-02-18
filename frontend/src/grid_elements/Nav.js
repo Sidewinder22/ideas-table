@@ -14,26 +14,30 @@ export class Nav extends Component {
     }
 
     componentDidMount() {
-        const access_token = localStorage.getItem('access_token');
+        const user_logged = localStorage.getItem('user_logged');
 
-        fetch(API + CATEGORIES_QUERY, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `JWT ${access_token}`,
-            }
-            })
-            .then(response => response.json())
-            .then(categories =>  {
-                let categoriesConverted = JSON.parse(categories);
+        if (user_logged) {
+            const access_token = localStorage.getItem('access_token');
 
-                categoriesConverted.sort();                
-                this.setState({ categories: categoriesConverted });
-            })
-            .catch(error => {
-                console.error(error);
-                return { name: "network error", description: ""};
-            });
+            fetch(API + CATEGORIES_QUERY, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `JWT ${access_token}`,
+                }
+                })
+                .then(response => response.json())
+                .then(categories =>  {
+                    let categoriesConverted = JSON.parse(categories);
+
+                    categoriesConverted.sort();                
+                    this.setState({ categories: categoriesConverted });
+                })
+                .catch(error => {
+                    console.error(error);
+                    return { name: "network error", description: ""};
+                });
+        }
     }
 
     showCategories() {
@@ -60,11 +64,11 @@ export class Nav extends Component {
 
     render() {
         return (
-            <nav>
-                <h2>Category</h2>
+            <>
+                {/* <h2>Category</h2> */}
                 <button className='clean_cat_button' onClick={ this.props.onCleanSpecificCategoryClick }>Clean category</button>
                 { this.showCategories() }
-            </nav>
+            </>
         );
     }
 }

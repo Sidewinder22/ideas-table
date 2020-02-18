@@ -6,7 +6,6 @@ export class Aside extends Component {
     introduction() {
         return (
             <div className='user'>
-                <h2>User</h2>
                 <ul>
                     <li>user: { this.props.user.username}</li>
                     <li>id: { this.props.user.id }</li>
@@ -19,6 +18,10 @@ export class Aside extends Component {
     render() {
         return (
             <aside>
+                <h2>User</h2>
+                <button onClick={ this.props.onLogoutButtonChange }>
+                    Logout
+                </button>
                 { this.introduction() }
             </aside>
         );

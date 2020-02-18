@@ -28,6 +28,7 @@ class App extends Component {
         email: '',
       },
       main: null,
+      nav: null,
       errors: null,
     };
 
@@ -37,6 +38,8 @@ class App extends Component {
       this.handleSpecificCategoryClick.bind(this);
     this.handleCleanSpecificCategoryClick =
       this.handleCleanSpecificCategoryClick.bind(this);
+    this.handleLogoutButtonChange = 
+      this.handleLogoutButtonChange.bind(this);
 
     this.handleSingUpClick = 
       this.handleSingUpClick.bind(this);
@@ -78,6 +81,18 @@ class App extends Component {
     this.mainElement.current.cleanSpecificCategory();
   }
 
+  handleLogoutButtonChange(event) {
+    localStorage.setItem('user_logged', false);
+
+    this.setState({
+      main: <SignInScreen
+        onSignInSubmit = { this.handleSignInSubmit }
+      />,
+      nav: null,
+      errors: null,
+    })
+  }
+
   handleSingUpClick() {
     this.setState({main: 
       <SignUpScreen
@@ -110,7 +125,7 @@ class App extends Component {
       .then(response => {
           let responseObject = JSON.parse(response)
 
-          if (responseObject.response == 'ok') {
+          if (responseObject.response === 'ok') {
             this.setState({
               main: <SignInScreen
                 onSignInSubmit = { this.handleSignInSubmit }
@@ -137,17 +152,33 @@ class App extends Component {
         username: username,
         password: password
       })})
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return response.json()
+      })
       .then(response => {
           localStorage.setItem('access_token', response.access_token);
+          localStorage.setItem('user_logged', true);
 
           this.setState({
             main: <Main 
               ref = { this.mainElement }
               user_id = { this.state.user.id }
-            /> 
+            />,
+            nav: <Nav
+              onSpecificCategoryClick = { this.handleSpecificCategoryClick }
+              onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
+            />,
+            errors: null,
           });
-      });
+      })
+      .catch(error => {
+          this.setState({
+            errors: 'Wrong username or password'
+          });
+        });
   }
 
   render() {
@@ -156,10 +187,10 @@ class App extends Component {
 
         <Header />
 
-        <Nav
-          onSpecificCategoryClick = { this.handleSpecificCategoryClick }
-          onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
-        />
+        <nav>
+          <h2>Category</h2>
+          { this.state.nav }
+        </nav>
 
         <main>
           { this.state.main }
@@ -168,6 +199,7 @@ class App extends Component {
         
         <Aside 
           user = { this.state.user } 
+          onLogoutButtonChange = { this.handleLogoutButtonChange }
         />
 
         <Footer />
