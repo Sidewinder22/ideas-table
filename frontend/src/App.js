@@ -34,10 +34,14 @@ class App extends Component {
       this.handleSpecificCategoryClick.bind(this);
     this.handleCleanSpecificCategoryClick =
       this.handleCleanSpecificCategoryClick.bind(this);
+
     this.handleSingUpClick = 
       this.handleSingUpClick.bind(this);
     this.handleSingInClick = 
       this.handleSingInClick.bind(this);
+
+    this.handleSignUpSubmit = 
+      this.handleSignUpSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -67,20 +71,24 @@ class App extends Component {
     this.mainElement.current.cleanSpecificCategory();
   }
 
-  handleSingUpClick(event) {
-    console.log(`handleSingUpClick: ${event}`)
-
+  handleSingUpClick() {
     this.setState({main: 
-      <SignUpScreen />
+      <SignUpScreen
+        onSingUpSubmit = { this.handleSignUpSubmit }
+      />
     });
   }
 
-  handleSingInClick(event) {
-    console.log(`handleSingInClick`)
-
+  handleSingInClick() {
     this.setState({main:
       <SignInScreen />
     });
+  }
+
+  handleSignUpSubmit(username, password, email) {
+    console.log(`handleSignUpSubmit, username: ${username}`)
+    console.log(`handleSignUpSubmit, password: ${password}`)
+    console.log(`handleSignUpSubmit, email: ${email}`)
   }
 
   render() {
