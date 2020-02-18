@@ -210,6 +210,12 @@ footer {
     margin-top: 75px;
 }
 
+.sign_error {
+    color: red;
+    font-family: 1.7em;
+    margin: 20px;
+}
+
 
 /**********************************************************
  * Nav

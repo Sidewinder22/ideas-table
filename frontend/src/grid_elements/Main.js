@@ -50,23 +50,23 @@ export class Main extends Component {
 
     handleNewWidgetButtonChange() {
         fetch(API + IDEAS_QUERY, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            title: 'New Idea',
-            user_id: this.props.user_id,
-        })
-        })
-        .then(response => response.json())
-        .then(idea => {
-            let newIdeas = this.state.ideas;
-            let ideaObject = JSON.parse(idea)
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: 'New Idea',
+                user_id: this.props.user_id,
+            })
+            })
+            .then(response => response.json())
+            .then(idea => {
+                let newIdeas = this.state.ideas;
+                let ideaObject = JSON.parse(idea)
 
-            newIdeas.push(ideaObject)
-            this.setState({ ideas: newIdeas})
+                newIdeas.push(ideaObject)
+                this.setState({ ideas: newIdeas})
         });
     }
 
@@ -117,7 +117,7 @@ export class Main extends Component {
 
     render() {
         return (
-            <main>
+            <>
                 <MainNavbar 
                     ref = { this.mainNavbarElement }
                     newWidgetButtonChange = { this.handleNewWidgetButtonChange }
@@ -129,7 +129,7 @@ export class Main extends Component {
                     onCloseButtonChange = { this.handleCloseButtonChange }
                     onWidgetChange = { this.handleWidgetChange }
                 />
-            </main>
+            </>
         );
     }
 }

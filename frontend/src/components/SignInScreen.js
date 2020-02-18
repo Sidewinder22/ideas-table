@@ -15,7 +15,7 @@ export class SignInScreen extends Component {
 
     render() {
         return (
-            <main>
+            <>
                 <h2>Sign In</h2>
                     <form onSubmit={ this.handleSubmitClick }>
                         <div className='login_form'>
@@ -28,7 +28,7 @@ export class SignInScreen extends Component {
 
                         <input type='submit' name='submit' required />
                     </form>
-            </main>
+            </>
         );
     }
 }

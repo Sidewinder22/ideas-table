@@ -26,6 +26,7 @@ class App extends Component {
         email: '',
       },
       main: null,
+      errors: null,
     };
 
     this.mainElement = React.createRef();
@@ -86,9 +87,35 @@ class App extends Component {
   }
 
   handleSignUpSubmit(username, password, email) {
-    console.log(`handleSignUpSubmit, username: ${username}`)
-    console.log(`handleSignUpSubmit, password: ${password}`)
-    console.log(`handleSignUpSubmit, email: ${email}`)
+    fetch(API + USERS_QUERY,{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        email: email
+      })})
+      .then(response => response.json())
+      .then(response => {
+          let responseObject = JSON.parse(response)
+          console.log(`SignUp response ${response}`)
+
+          if (responseObject.response == 'ok') {
+            this.setState({
+              main: <SignInScreen />,
+              errors: null,
+            });
+          }
+          else {
+            this.setState({
+              errors: responseObject.response
+            });
+          }
+
+      })
   }
 
   render() {
@@ -102,7 +129,10 @@ class App extends Component {
           onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
         />
 
-        { this.state.main }
+        <main>
+          { this.state.main }
+          { this.state.errors ? <div className='sign_error'>{ this.state.errors }</div> : ''}
+        </main>
         
         {/* <Main 
           ref = { this.mainElement }

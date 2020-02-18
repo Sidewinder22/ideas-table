@@ -12,15 +12,23 @@ def index():
 @app.route('/api/users', methods=['POST'])
 def create_user():
     data = request.get_json()
-    
-    user = User(username=data['username'],
-        email=data['email'])
-    user.set_password(data['password'])
 
-    db.session.add(user)
-    db.session.commit()
+    if User.query.filter_by(username=data['username']).first():
+        response = {"response": "Username already used"}
+    elif User.query.filter_by(email=data['email']).first():
+        response = {"response": "Email already used"}
+    else:
+        user = User(username=data['username'],
+            email=data['email'])
+        user.set_password(data['password'])
 
-    return jsonify(data)
+        db.session.add(user)
+        db.session.commit()
+
+        response = {"response": "ok"}
+
+    result = json.dumps(response)
+    return jsonify(result)
 
 @app.route('/api/users/<number>', methods=['GET'])
 @jwt_required()
