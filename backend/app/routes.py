@@ -13,16 +13,8 @@ def index():
 @jwt_required()
 def get_user():
     username = request.args.get('username')
-
     user = User.query.filter_by(username=username).first()
-    if user is None:
-        return {}
-    result = jsonify(
-        id=user.id,
-        username=user.username,
-        email=user.email
-    )
-    return result, {'Content-Type': 'application/json'}
+    return create_user_json(user)
 
 @app.route('/api/users', methods=['POST'])
 def create_user():
@@ -49,14 +41,7 @@ def create_user():
 @jwt_required()
 def get_users(number):
     user = User.query.get(number)
-    if user is None:
-        return {}
-    result = jsonify(
-        id=user.id,
-        username=user.username,
-        email=user.email
-    )
-    return result, {'Content-Type': 'application/json'}
+    return create_user_json(user)
 
 @app.route('/api/users/<number>', methods=['DELETE'])
 @jwt_required()
@@ -216,4 +201,14 @@ def create_idea_dictionary(idea):
         'category' : idea.category,
         'body' : idea.body
     }
+
+def create_user_json(user):
+    if user is None:
+            return {}
+    result = jsonify(
+        id=user.id,
+        username=user.username,
+        email=user.email
+    )
+    return result, {'Content-Type': 'application/json'}
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../index.css';
 
 import { API } from '../App';
-// import { USERS_QUERY } from '../App';
 const QUERY = 'user?username='
 
 export class Aside extends Component {
