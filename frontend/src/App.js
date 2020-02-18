@@ -12,8 +12,7 @@ import { SignInScreen } from './components/SignInScreen';
 const BACKEND = 'http://127.0.0.1:5000/';
 // const BACKEND = 'https://ideas.api.sidewinder22.pl/api/';
 export const API = BACKEND + 'api/';
-const USER_QUERY = 'users/1';
-const USERS_QUERY = 'users';
+export const USERS_QUERY = 'users';
 const AUTH_QUERY = 'auth';
 export const IDEAS_QUERY = 'ideas';
 
@@ -22,13 +21,9 @@ class App extends Component {
     super(props);
     
     this.state = {
-      user: {
-        id: null,
-        username: '',
-        email: '',
-      },
       main: null,
       nav: null,
+      aside: null,
       errors: null,
     };
 
@@ -59,18 +54,6 @@ class App extends Component {
         onSignInClick = { this.handleSingInClick }
       />
     });
-
-    const access_token = localStorage.getItem('access_token');
-
-    fetch(API + USER_QUERY, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `JWT ${access_token}`,
-      }
-    })
-      .then(response => response.json())
-      .then(user => this.setState({ user }));
   }
 
   handleSpecificCategoryClick(event) {
@@ -89,6 +72,7 @@ class App extends Component {
         onSignInSubmit = { this.handleSignInSubmit }
       />,
       nav: null,
+      aside: null,
       errors: null,
     })
   }
@@ -165,11 +149,14 @@ class App extends Component {
           this.setState({
             main: <Main 
               ref = { this.mainElement }
-              user_id = { this.state.user.id }
             />,
             nav: <Nav
               onSpecificCategoryClick = { this.handleSpecificCategoryClick }
               onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
+            />,
+            aside: <Aside 
+              onLogoutButtonChange = { this.handleLogoutButtonChange }
+              username = { username }
             />,
             errors: null,
           });
@@ -197,10 +184,10 @@ class App extends Component {
           { this.state.errors ? <div className='sign_error'>{ this.state.errors }</div> : ''}
         </main>
         
-        <Aside 
-          user = { this.state.user } 
-          onLogoutButtonChange = { this.handleLogoutButtonChange }
-        />
+        <aside>
+          <h2>User</h2>
+          { this.state.aside }
+        </aside>
 
         <Footer />
       </div>

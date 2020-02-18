@@ -65,7 +65,6 @@ export class Nav extends Component {
     render() {
         return (
             <>
-                {/* <h2>Category</h2> */}
                 <button className='clean_cat_button' onClick={ this.props.onCleanSpecificCategoryClick }>Clean category</button>
                 { this.showCategories() }
             </>

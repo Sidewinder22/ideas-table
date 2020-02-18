@@ -63,7 +63,6 @@ export class Main extends Component {
             },
             body: JSON.stringify({
                 title: 'New Idea',
-                user_id: this.props.user_id,
             })
             })
             .then(response => response.json())

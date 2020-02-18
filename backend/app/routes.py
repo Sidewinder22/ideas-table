@@ -9,6 +9,21 @@ from app import app
 def index():
     return '<h1>IDeas Table</h1>'
 
+@app.route('/api/user', methods=['GET'])
+@jwt_required()
+def get_user():
+    username = request.args.get('username')
+
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        return {}
+    result = jsonify(
+        id=user.id,
+        username=user.username,
+        email=user.email
+    )
+    return result, {'Content-Type': 'application/json'}
+
 @app.route('/api/users', methods=['POST'])
 def create_user():
     data = request.get_json()
@@ -32,7 +47,7 @@ def create_user():
 
 @app.route('/api/users/<number>', methods=['GET'])
 @jwt_required()
-def get_user(number):
+def get_users(number):
     user = User.query.get(number)
     if user is None:
         return {}
