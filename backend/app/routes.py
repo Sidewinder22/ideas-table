@@ -9,6 +9,19 @@ from app import app
 def index():
     return '<h1>IDeas Table</h1>'
 
+@app.route('/api/users', methods=['POST'])
+def create_user():
+    data = request.get_json()
+    
+    user = User(username=data['username'],
+        email=data['email'])
+    user.set_password(data['password'])
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify(data)
+
 @app.route('/api/users/<number>', methods=['GET'])
 @jwt_required()
 def get_user(number):
@@ -21,20 +34,6 @@ def get_user(number):
         email=user.email
     )
     return result, {'Content-Type': 'application/json'}
-
-@app.route('/api/users', methods=['POST'])
-@jwt_required()
-def create_user():
-    data = request.get_json()
-    
-    user = User(username=data['username'],
-        email=data['email'])
-    user.set_password(data['password'])
-
-    db.session.add(user)
-    db.session.commit()
-
-    return jsonify(data)
 
 @app.route('/api/users/<number>', methods=['DELETE'])
 @jwt_required()
