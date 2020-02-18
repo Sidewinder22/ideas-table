@@ -31,10 +31,13 @@ export class Main extends Component {
     }
 
     fetchAndUpdateIdeas(url) {
+        const access_token = localStorage.getItem('access_token');
+
         fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `JWT ${access_token}`,
             }
             })
             .then(response => response.json())
@@ -49,11 +52,14 @@ export class Main extends Component {
     }
 
     handleNewWidgetButtonChange() {
+        const access_token = localStorage.getItem('access_token');
+
         fetch(API + IDEAS_QUERY, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': `JWT ${access_token}`,
             },
             body: JSON.stringify({
                 title: 'New Idea',
@@ -71,11 +77,14 @@ export class Main extends Component {
     }
 
     handleCloseButtonChange(id) {
+        const access_token = localStorage.getItem('access_token');
+
         fetch(API + IDEAS_QUERY + '/' + id, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': `JWT ${access_token}`,
             },
             body: ''
         })
@@ -106,12 +115,10 @@ export class Main extends Component {
     }
 
     displaySpecificCategory(category) {
-        console.log(`displaySpecificCategory`)
         this.fetchAndUpdateIdeas(API + IDEAS_QUERY + '?category=' + category);
     }
 
     cleanSpecificCategory() {
-        console.log(`cleanSpecificCategory`)
         this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
     }
 

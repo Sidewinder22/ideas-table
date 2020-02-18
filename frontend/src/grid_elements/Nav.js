@@ -14,10 +14,13 @@ export class Nav extends Component {
     }
 
     componentDidMount() {
+        const access_token = localStorage.getItem('access_token');
+
         fetch(API + CATEGORIES_QUERY, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `JWT ${access_token}`,
             }
             })
             .then(response => response.json())

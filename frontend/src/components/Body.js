@@ -22,11 +22,14 @@ class Body extends Component {
         if (this.state.text !== event.target.value) {
             this.setState({text: event.target.value})
 
+            const access_token = localStorage.getItem('access_token');
+
             fetch(API + IDEAS_QUERY + '/' + this.props.id, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
+                    'Authorization': `JWT ${access_token}`,
                 },
                 body: JSON.stringify({
                     body: event.target.value,

@@ -27,7 +27,6 @@ export class SignInScreen extends Component {
         });
     }
     handleSubmitChange(event) {
-        console.log(`SingIn, handleSubmitClick`);
         event.preventDefault()
 
         this.props.onSignInSubmit(

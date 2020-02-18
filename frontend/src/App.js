@@ -57,10 +57,13 @@ class App extends Component {
       />
     });
 
+    const access_token = localStorage.getItem('access_token');
+
     fetch(API + USER_QUERY, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': `JWT ${access_token}`,
       }
     })
       .then(response => response.json())
@@ -72,7 +75,6 @@ class App extends Component {
   }
   
   handleCleanSpecificCategoryClick() {
-    console.log('22')
     this.mainElement.current.cleanSpecificCategory();
   }
 
@@ -125,8 +127,6 @@ class App extends Component {
   }
 
   handleSignInSubmit(username, password) {
-    console.log(`App, handleSignInSubmit, username=${username}, pass=${password}`)
-
     fetch(BACKEND + AUTH_QUERY,{
       method: 'POST',
       headers: {
@@ -139,8 +139,14 @@ class App extends Component {
       })})
       .then(response => response.json())
       .then(response => {
-          console.log(`SignIn response ${response.access_token}`)
+          localStorage.setItem('access_token', response.access_token);
 
+          this.setState({
+            main: <Main 
+              ref = { this.mainElement }
+              user_id = { this.state.user.id }
+            /> 
+          });
       });
   }
 
@@ -160,11 +166,6 @@ class App extends Component {
           { this.state.errors ? <div className='sign_error'>{ this.state.errors }</div> : ''}
         </main>
         
-        {/* <Main 
-          ref = { this.mainElement }
-          user_id = { this.state.user.id }
-        /> */}
-
         <Aside 
           user = { this.state.user } 
         />
