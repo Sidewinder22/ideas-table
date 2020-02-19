@@ -31,47 +31,59 @@ export class Main extends Component {
     }
 
     fetchAndUpdateIdeas(url) {
+        const access_token = localStorage.getItem('access_token');
+
         fetch(url, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'Authorization': `JWT ${access_token}`,
             }
             })
             .then(response => response.json())
             .then(ideas =>  {
             let ideasObject = JSON.parse(ideas)
             this.setState({ ideas: ideasObject })
+            })
+            .catch(error => {
+                console.error(error);
+                return { name: "network error", description: ""};
             });
     }
 
     handleNewWidgetButtonChange() {
-        fetch(API + IDEAS_QUERY, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            title: 'New Idea',
-            user_id: this.props.user_id,
-        })
-        })
-        .then(response => response.json())
-        .then(idea => {
-            let newIdeas = this.state.ideas;
-            let ideaObject = JSON.parse(idea)
+        const access_token = localStorage.getItem('access_token');
 
-            newIdeas.push(ideaObject)
-            this.setState({ ideas: newIdeas})
+        fetch(API + IDEAS_QUERY, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `JWT ${access_token}`,
+            },
+            body: JSON.stringify({
+                title: 'New Idea',
+            })
+            })
+            .then(response => response.json())
+            .then(idea => {
+                let newIdeas = this.state.ideas;
+                let ideaObject = JSON.parse(idea)
+
+                newIdeas.push(ideaObject)
+                this.setState({ ideas: newIdeas})
         });
     }
 
     handleCloseButtonChange(id) {
+        const access_token = localStorage.getItem('access_token');
+
         fetch(API + IDEAS_QUERY + '/' + id, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Authorization': `JWT ${access_token}`,
             },
             body: ''
         })
@@ -102,18 +114,16 @@ export class Main extends Component {
     }
 
     displaySpecificCategory(category) {
-        console.log(`displaySpecificCategory`)
         this.fetchAndUpdateIdeas(API + IDEAS_QUERY + '?category=' + category);
     }
 
     cleanSpecificCategory() {
-        console.log(`cleanSpecificCategory`)
         this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
     }
 
     render() {
         return (
-            <main>
+            <>
                 <MainNavbar 
                     ref = { this.mainNavbarElement }
                     newWidgetButtonChange = { this.handleNewWidgetButtonChange }
@@ -125,7 +135,7 @@ export class Main extends Component {
                     onCloseButtonChange = { this.handleCloseButtonChange }
                     onWidgetChange = { this.handleWidgetChange }
                 />
-            </main>
+            </>
         );
     }
 }

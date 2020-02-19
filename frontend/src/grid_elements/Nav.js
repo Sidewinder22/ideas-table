@@ -14,19 +14,30 @@ export class Nav extends Component {
     }
 
     componentDidMount() {
-        fetch(API + CATEGORIES_QUERY, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-            })
-            .then(response => response.json())
-            .then(categories =>  {
-                let categoriesConverted = JSON.parse(categories);
+        const user_logged = localStorage.getItem('user_logged');
 
-                categoriesConverted.sort();                
-                this.setState({ categories: categoriesConverted });
-        });
+        if (user_logged) {
+            const access_token = localStorage.getItem('access_token');
+
+            fetch(API + CATEGORIES_QUERY, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `JWT ${access_token}`,
+                }
+                })
+                .then(response => response.json())
+                .then(categories =>  {
+                    let categoriesConverted = JSON.parse(categories);
+
+                    categoriesConverted.sort();                
+                    this.setState({ categories: categoriesConverted });
+                })
+                .catch(error => {
+                    console.error(error);
+                    return { name: "network error", description: ""};
+                });
+        }
     }
 
     showCategories() {
@@ -53,11 +64,10 @@ export class Nav extends Component {
 
     render() {
         return (
-            <nav>
-                <h2>Category</h2>
+            <>
                 <button className='clean_cat_button' onClick={ this.props.onCleanSpecificCategoryClick }>Clean category</button>
                 { this.showCategories() }
-            </nav>
+            </>
         );
     }
 }

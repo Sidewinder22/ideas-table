@@ -21,6 +21,8 @@ $ (venv) pip install wheel
 
 $ (venv) pip install uwsgi
 
+$ (venv) pip install Flask-JWT
+
 ### DataBase
 $ (venv) flask db migrate -m "users table"
 $ (venv) flask db upgrade

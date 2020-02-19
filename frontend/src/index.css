@@ -193,6 +193,31 @@ footer {
 }
 
 /**********************************************************
+ * Main
+ */
+.sign_button {
+    margin: 20px;
+}
+
+.login_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.welcome_screen {
+    margin-top: 75px;
+}
+
+.sign_error {
+    color: red;
+    font-family: 1.7em;
+    margin: 20px;
+}
+
+
+/**********************************************************
  * Nav
  */
 .nav_category {
