@@ -33,8 +33,8 @@ class App extends Component {
       this.handleSpecificCategoryClick.bind(this);
     this.handleCleanSpecificCategoryClick =
       this.handleCleanSpecificCategoryClick.bind(this);
-    this.HandleLogoutChange = 
-      this.HandleLogoutChange.bind(this);
+    this.handleLogoutChange = 
+      this.handleLogoutChange.bind(this);
 
     this.handleSingUpClick = 
       this.handleSingUpClick.bind(this);
@@ -64,9 +64,7 @@ class App extends Component {
     this.mainElement.current.cleanSpecificCategory();
   }
 
-  HandleLogoutChange(event) {
-    localStorage.setItem('user_logged', false);
-
+  handleLogoutChange(event){
     this.setState({
       main: <SignInScreen
         onSignInSubmit = { this.handleSignInSubmit }
@@ -144,7 +142,7 @@ class App extends Component {
       })
       .then(response => {
           localStorage.setItem('access_token', response.access_token);
-          localStorage.setItem('user_logged', true);
+          localStorage.setItem('username', username);
 
           this.setState({
             main: <Main 
@@ -155,7 +153,7 @@ class App extends Component {
               onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
             />,
             aside: <Aside 
-              onLogoutButtonChange = { this.HandleLogoutChange }
+              onLogoutButtonChange = { this.handleLogoutChange }
               username = { username }
             />,
             errors: null,
@@ -163,7 +161,7 @@ class App extends Component {
 
           setTimeout(
             () => {
-              this.HandleLogoutChange();
+              this.handleLogoutChange();
             },
             5 * 60 * 1000
           );
