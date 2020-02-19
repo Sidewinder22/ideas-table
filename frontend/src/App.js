@@ -10,7 +10,7 @@ import { WelcomeScreen } from './components/WelcomeScreen';
 import { SignInScreen } from './components/SignInScreen';
 
 const BACKEND = 'http://127.0.0.1:5000/';
-// const BACKEND = 'https://ideas.api.sidewinder22.pl/api/';
+// const BACKEND = 'https://ideas.api.sidewinder22.pl/';
 export const API = BACKEND + 'api/';
 export const USERS_QUERY = 'users';
 const AUTH_QUERY = 'auth';
@@ -33,8 +33,8 @@ class App extends Component {
       this.handleSpecificCategoryClick.bind(this);
     this.handleCleanSpecificCategoryClick =
       this.handleCleanSpecificCategoryClick.bind(this);
-    this.handleLogoutButtonChange = 
-      this.handleLogoutButtonChange.bind(this);
+    this.HandleLogoutChange = 
+      this.HandleLogoutChange.bind(this);
 
     this.handleSingUpClick = 
       this.handleSingUpClick.bind(this);
@@ -64,7 +64,7 @@ class App extends Component {
     this.mainElement.current.cleanSpecificCategory();
   }
 
-  handleLogoutButtonChange(event) {
+  HandleLogoutChange(event) {
     localStorage.setItem('user_logged', false);
 
     this.setState({
@@ -155,11 +155,18 @@ class App extends Component {
               onCleanSpecificCategoryClick = { this.handleCleanSpecificCategoryClick }
             />,
             aside: <Aside 
-              onLogoutButtonChange = { this.handleLogoutButtonChange }
+              onLogoutButtonChange = { this.HandleLogoutChange }
               username = { username }
             />,
             errors: null,
           });
+
+          setTimeout(
+            () => {
+              this.HandleLogoutChange();
+            },
+            5 * 60 * 1000
+          );
       })
       .catch(error => {
           this.setState({

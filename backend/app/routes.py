@@ -94,7 +94,6 @@ def edit_idea(number):
 @app.route('/api/ideas', methods=['GET'])
 @jwt_required()
 def get_ideas():
-    print('get_ideas')
     category = request.args.get('category')
 
     ideas = []
