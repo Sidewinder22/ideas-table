@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import '../index.css';
 import { API } from '../App';
 
-const CATEGORIES_QUERY = 'categories';
+const QUERY = 'categories' + '?username=';
 
 export class Nav extends Component {
     constructor(props) {
@@ -14,30 +14,27 @@ export class Nav extends Component {
     }
 
     componentDidMount() {
-        const user_logged = localStorage.getItem('user_logged');
+        const access_token = localStorage.getItem('access_token');
+        const username = localStorage.getItem('username')
 
-        if (user_logged) {
-            const access_token = localStorage.getItem('access_token');
+        fetch(API + QUERY + username, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `JWT ${access_token}`,
+            }
+            })
+            .then(response => response.json())
+            .then(categories =>  {
+                let categoriesConverted = JSON.parse(categories);
 
-            fetch(API + CATEGORIES_QUERY, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': `JWT ${access_token}`,
-                }
-                })
-                .then(response => response.json())
-                .then(categories =>  {
-                    let categoriesConverted = JSON.parse(categories);
-
-                    categoriesConverted.sort();                
-                    this.setState({ categories: categoriesConverted });
-                })
-                .catch(error => {
-                    console.error(error);
-                    return { name: "network error", description: ""};
-                });
-        }
+                categoriesConverted.sort();                
+                this.setState({ categories: categoriesConverted });
+            })
+            .catch(error => {
+                console.error(error);
+                return { name: "network error", description: ""};
+            });
     }
 
     showCategories() {

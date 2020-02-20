@@ -94,14 +94,17 @@ def edit_idea(number):
 @app.route('/api/ideas', methods=['GET'])
 @jwt_required()
 def get_ideas():
-    print('get_ideas')
     category = request.args.get('category')
+    username = request.args.get('username')
+    id = get_user_id(username)
 
     ideas = []
     if category:
-        ideas = Idea.query.filter_by(category = category)
+        ideas = Idea.query \
+            .filter_by(category = category) \
+            .filter_by(user_id = id)
     else:
-        ideas = Idea.query.all()
+        ideas = Idea.query.filter_by(user_id = id)
 
     jsonStr = ''
     ideasList = []
@@ -119,44 +122,22 @@ def get_ideas():
 
     return jsonify(jsonStr)
 
-@app.route('/api/categories', methods=['GET'])
-@jwt_required()
-def get_categories():
-    ideas = Idea.query.all()
-    jsonStr = ''
-    categorySet = set()
-
-    try:
-        for idea in ideas:
-            categorySet.add(idea.category)
-
-        tempDict = {}
-        tempList = []
-        for element in categorySet:
-            tempList.append(element)
-
-        tempDict['categories'] = tempList
-        jsonStr = json.dumps(tempList)
-
-    except Exception as err:
-        print("Get categories error: {0}".format(err))
-
-    return jsonify(jsonStr)
-
 @app.route('/api/ideas', methods=['POST'])
 @jwt_required()
 def create_idea():
     data = request.get_json()
-    idea_user_id = 1
+    username = ''
     idea_title = 'New Idea'
 
-    if 'user_id' in data:
-        idea_user_id = data['user_id']
+    if 'username' in data:
+        username = data['username']
     if 'title' in data:
         idea_title = data['title']
 
+    id = get_user_id(username)
+
     idea = Idea(
-        user_id = idea_user_id,
+        user_id = id,
         title = idea_title,
         category = '',
         body = '')
@@ -179,6 +160,33 @@ def delete_idea(number):
         print("Get delete_idea error: {0}".format(err))
 
     return jsonify(result)
+
+@app.route('/api/categories', methods=['GET'])
+@jwt_required()
+def get_categories():
+    username = request.args.get('username')
+    id = get_user_id(username)
+
+    ideas = Idea.query.filter_by(user_id=id)
+    jsonStr = ''
+    categorySet = set()
+
+    try:
+        for idea in ideas:
+            categorySet.add(idea.category)
+
+        tempDict = {}
+        tempList = []
+        for element in categorySet:
+            tempList.append(element)
+
+        tempDict['categories'] = tempList
+        jsonStr = json.dumps(tempList)
+
+    except Exception as err:
+        print("Get categories error: {0}".format(err))
+
+    return jsonify(jsonStr)
 
 ########### Free Functions ############
 def convert_idea_to_json(idea):
@@ -212,3 +220,6 @@ def create_user_json(user):
     )
     return result, {'Content-Type': 'application/json'}
 
+def get_user_id(username):
+    user = User.query.filter_by(username = username).first()
+    return user.id

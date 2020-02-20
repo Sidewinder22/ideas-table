@@ -27,7 +27,9 @@ export class Main extends Component {
     }
 
     componentDidMount() {
-        this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
+        let username = localStorage.getItem('username');
+        console.log(`username: ${username}`);
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY + '?username=' + username);
     }
 
     fetchAndUpdateIdeas(url) {
@@ -53,6 +55,7 @@ export class Main extends Component {
 
     handleNewWidgetButtonChange() {
         const access_token = localStorage.getItem('access_token');
+        const username = localStorage.getItem('username')
 
         fetch(API + IDEAS_QUERY, {
             method: 'POST',
@@ -63,6 +66,7 @@ export class Main extends Component {
             },
             body: JSON.stringify({
                 title: 'New Idea',
+                username: username,
             })
             })
             .then(response => response.json())
@@ -114,11 +118,19 @@ export class Main extends Component {
     }
 
     displaySpecificCategory(category) {
-        this.fetchAndUpdateIdeas(API + IDEAS_QUERY + '?category=' + category);
+        const username = localStorage.getItem('username');
+        this.fetchAndUpdateIdeas(API 
+            + IDEAS_QUERY
+            + '?category='
+            + category
+            + '&username='
+            + username
+        );
     }
 
     cleanSpecificCategory() {
-        this.fetchAndUpdateIdeas(API + IDEAS_QUERY);
+        const username = localStorage.getItem('username');
+        this.fetchAndUpdateIdeas(API + IDEAS_QUERY + '?username=' + username);
     }
 
     render() {
