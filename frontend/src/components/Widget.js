@@ -26,9 +26,9 @@ class Widget extends Component {
         return (
             <div className='widget'>
                 <div className='title_bar'>
-                    <Id
+                    { /*<Id
                         id = { this.props.id }
-                    />
+                    /> */ }
                     <Title
                         id = { this.props.id }
                         text = { this.props.title }
