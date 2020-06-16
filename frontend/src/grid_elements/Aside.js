@@ -47,6 +47,7 @@ export class Aside extends Component {
     render() {
         return (
             <>
+                <h2>User</h2>
                 <button onClick={ this.props.onLogoutButtonChange }>
                     Logout
                 </button>

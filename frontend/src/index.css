@@ -12,6 +12,7 @@
 body {
     font-size: 1em;
     font-family: 'Cadman', sans-serif;
+    /* background-color: black; */
 }
 
 /************************** APP ***************************
@@ -51,6 +52,7 @@ header {
     color: #33CC33;  
     background-color: #000000;  
 
+    padding: 10px;
 }
 
 nav {
@@ -61,7 +63,6 @@ nav {
     align-items: center;
 
     color: #333333;  
-    background-color: #e6ffcc; 
 }
 
 nav ul {
@@ -74,8 +75,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    background-color: #ffffe6;
 }
 
 aside {
@@ -86,7 +85,6 @@ aside {
     align-items: center;
 
     color: #333333;  
-    background-color: #e6ffcc; 
 }
 
 aside ul {
@@ -102,6 +100,8 @@ footer {
 
     color: #33CC33;  
     background-color: #000000;  
+
+    padding: 10px;
 }
 
 /**********************************************************
@@ -195,10 +195,57 @@ footer {
 /**********************************************************
  * Main
  */
-.sign_button {
-    margin: 20px;
+
+ /*** Welcome ***/
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 75px;
 }
 
+.welcome .title {
+    font-size: 2em;    
+    color: white;
+}
+
+.welcome .login {
+    margin-top: 80px;
+    margin-bottom: 40px;
+
+    padding: 20px;
+
+    border: 2px solid green;
+    border-radius: 10px;
+
+    font-size: 2em;
+    transition-duration: 0.4s;
+}
+
+.welcome .login:hover {
+    background-color: green;
+    color: white;
+}
+
+.welcome .sign_up {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+
+    border: 2px solid #b81d1d;
+    border-radius: 10px;
+
+    font-size: 1.5em;
+    transition-duration: 0.4s;
+}
+
+.welcome .sign_up:hover {
+    background-color: #b81d1d;
+    color: white;
+}
+
+
+/*** Login ***/
 .login_form {
     display: flex;
     flex-direction: column;
@@ -206,13 +253,9 @@ footer {
     justify-content: space-around;
 }
 
-.welcome_screen {
-    margin-top: 75px;
-}
-
-.sign_error {
+.login_error {
     color: red;
-    font-family: 1.7em;
+    font-size: 1.7em;
     margin: 20px;
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../index.css';
 
-export class SignInScreen extends Component {
+export class LoginScreen extends Component {
     constructor(props) {
         super(props);
 
