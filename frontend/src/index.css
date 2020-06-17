@@ -201,7 +201,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 75px;
+    margin-top: 50px;
 }
 
 .welcome .title {
@@ -210,7 +210,7 @@ footer {
 }
 
 .welcome .login {
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 40px;
 
     padding: 20px;
@@ -220,6 +220,7 @@ footer {
 
     font-size: 2em;
     transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .welcome .login:hover {
@@ -237,6 +238,7 @@ footer {
 
     font-size: 1.5em;
     transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .welcome .sign_up:hover {
@@ -246,17 +248,60 @@ footer {
 
 
 /*** Login ***/
-.login_form {
+.login {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.login .title {
+    font-size: 2em;
+}
+
+.login .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.login .line {
+    display: flex;
+    flex-direction: row;
+}
+
+.login .label {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.login .input {
+    padding: 5px;
+    font-size: 1.2em;
+    margin: 15px;
+}
+
+.login .submit {
+    margin: 20px;
+    padding: 20px;
+    font-size: 1.2em;
+    border: 2px solid green;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.login .submit:hover {
+    background-color: green;
+    color: white;
 }
 
 .login_error {
     color: red;
     font-size: 1.7em;
-    margin: 20px;
+    margin: 40px;
 }
 
 /**********************************************************

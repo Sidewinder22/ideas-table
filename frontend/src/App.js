@@ -168,7 +168,7 @@ class App extends Component {
       })
       .catch(error => {
           this.setState({
-            errors: 'Wrong username or password'
+            errors: 'Wrong username or password!'
           });
         });
   }
