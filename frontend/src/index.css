@@ -8,6 +8,10 @@ body {
     font-size: 1em;
 }
 
+button:focus {
+    outline: none;
+}
+
 /************************** APP ***************************
  *                      <header></header>                 *
  *                                                        *
@@ -137,7 +141,7 @@ footer {
 
 .main_navbar button {
     padding: 10px;
-    border: 2px solid #da6d6d;
+    border: 2px solid hsl(41, 100%, 66%);
     border-radius: 10px;
 
     font-size: 1.2em;
@@ -146,8 +150,9 @@ footer {
 }
 
 .main_navbar button:hover {
-    background-color: #da6d6d;
-    color: white;
+    /* background-color: #da6d6d; */
+    background-color: hsl(41, 100%, 66%);
+    /* color: white; */
 }
 
 .main_navbar .select_list {
@@ -169,6 +174,7 @@ footer {
 .main_navbar .select_list:focus {
     background-color: rgba(235, 239, 240, 0.979);
 }
+
 
 
 /**********************************************************
@@ -366,14 +372,14 @@ nav .clean_button {
     margin: 20px;
     padding: 10px;
     font-size: 1.2em;
-    border: 2px solid red;
+    border: 2px solid #da6d6d;
     border-radius: 10px;
     transition-duration: 0.4s;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 nav .clean_button:hover {
-    background-color: red;
+    background-color: #da6d6d;
     color: white;
 }
 
@@ -389,6 +395,42 @@ nav .category_button {
 nav .category_button:hover {
     background-color: rgb(126, 126, 204);
     color: white;
+}
+
+
+/**********************************************************
+ * Aside
+ */
+aside .title {
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+}
+
+aside .category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+aside .logout {
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 2px solid gray;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+aside .logout:hover {
+    background-color: gray;
+    color: white;
+}
+
+aside .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
