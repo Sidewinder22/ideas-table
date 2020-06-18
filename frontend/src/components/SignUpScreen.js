@@ -47,12 +47,17 @@ export class SignUpScreen extends Component {
 
     render() {
         return (
-            <>
-                <h2>Sign Up</h2>
-                    <form onSubmit={ this.handleSubmitChange }>
-                        <div className='login_form'>
-                            <label htmlFor='username'>Username</label>
-                            <input 
+            <div className='sign'>
+                <div className='title'>
+                    <h2>Sign Up</h2>
+                </div>
+                <form onSubmit={ this.handleSubmitChange }>
+                    <div className='form'>
+
+                        <div className='row'>
+                            <label className='label' htmlFor='username'>Username</label>
+                            <input
+                                className='input'
                                 type='text'
                                 placeholder='Enter username'
                                 name='username'
@@ -60,31 +65,39 @@ export class SignUpScreen extends Component {
                                 onChange={ this.handleUsernameChange }
                                 required
                             />
+                        </div>
 
-                            <label htmlFor='password'>Password</label>
+                        <div className='row'>
+                            <label className='label' htmlFor='password'>Password</label>
                             <input
-                                type='password' 
-                                placeholder='Enter password' 
-                                name='password' 
+                                className='input'
+                                type='password'
+                                placeholder='Enter password'
+                                name='password'
                                 value={ this.state.password }
                                 onChange={ this.handlePasswordChange }
                                 required
                             />
+                        </div>
 
-                            <label htmlFor='email'>Email</label>
+                        <div className='row'>
+                            <label className='label' htmlFor='email'>Email</label>
                             <input
-                                type='email' 
-                                placeholder='Enter email' 
-                                name='email' 
+                                className='input'
+                                type='email'
+                                placeholder='Enter email'
+                                name='email'
                                 value={ this.state.email }
                                 onChange={ this.handleEmailChange }
                                 required
                             />
                         </div>
+                    </div>
 
-                        <input type='submit' name='submit' required />
-                    </form>
-            </>
+                    <input className='submit' type='submit' name='submit' required />
+
+                </form>
+            </div>
         );
     }
 }

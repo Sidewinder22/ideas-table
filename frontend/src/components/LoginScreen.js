@@ -37,12 +37,13 @@ export class LoginScreen extends Component {
 
     render() {
         return (
-            <div className='login'>
+            <div className='sign'>
                 <div className='title'>
                     <h2>Login</h2>
                 </div>
                 <form onSubmit={ this.handleSubmitChange }>
                     <div className='form'>
+
                         <div className='row'>
                             <label className='label' htmlFor='username'>Username:</label>
                             <input
@@ -68,9 +69,9 @@ export class LoginScreen extends Component {
                                 required
                             />
                         </div>
-
-                        <input className='submit' type='submit' name='submit' required />
                     </div>
+
+                    <input className='submit' type='submit' name='submit' required />
                 </form>
             </div>
         );
