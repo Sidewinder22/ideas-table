@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NewWidgetButton } from '../components/NewWidgetButton';
 import '../index.css';
 
 import { API } from '../App';
@@ -48,6 +49,12 @@ export class Aside extends Component {
         return (
             <>
                 <h2>User</h2>
+
+                <NewWidgetButton
+                    onChange = { this.props.newWidgetButtonChange }
+                />
+
+
                 <button onClick={ this.props.onLogoutButtonChange }>
                     Logout
                 </button>
