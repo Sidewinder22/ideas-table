@@ -137,7 +137,7 @@ footer {
 
 .main_navbar button {
     padding: 10px;
-    border: 2px solid #dd6161;
+    border: 2px solid #da6d6d;
     border-radius: 10px;
 
     font-size: 1.2em;
@@ -146,7 +146,7 @@ footer {
 }
 
 .main_navbar button:hover {
-    background-color: #d85454;
+    background-color: #da6d6d;
     color: white;
 }
 
@@ -351,21 +351,46 @@ footer {
 /**********************************************************
  * Nav
  */
-.nav_category {
+nav .title {
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+}
+
+nav .category {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.category_button {
-    margin: 5px;
+nav .clean_button {
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 2px solid red;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.clean_cat_button {
-    margin: 20px;
-    font-size: 1em;
-    color: red;
+nav .clean_button:hover {
+    background-color: red;
+    color: white;
 }
+
+nav .category_button {
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid rgb(126, 126, 204);
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+nav .category_button:hover {
+    background-color: rgb(126, 126, 204);
+    color: white;
+}
+
 
 /**********************************************************
  * Media
