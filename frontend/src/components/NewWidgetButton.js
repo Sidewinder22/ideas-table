@@ -3,10 +3,8 @@ import '../index.css'
 
 export function NewWidgetButton(props) {
     return (
-        <div className='new_widget_button'>
-            <button onClick={ props.onChange }>
-                New Idea
-            </button>
-        </div>
+        <button className='new_widget_button' onClick={ props.onChange }>
+            New Idea
+        </button>
     );
 }

@@ -28,7 +28,7 @@ export class Nav extends Component {
             .then(categories =>  {
                 let categoriesConverted = JSON.parse(categories);
 
-                categoriesConverted.sort();                
+                categoriesConverted.sort();
                 this.setState({ categories: categoriesConverted });
             })
             .catch(error => {
@@ -43,7 +43,7 @@ export class Nav extends Component {
                 <div key={index}>
                     <button
                         className='category_button'
-                        value={ category } 
+                        value={ category }
                         onClick={ this.props.onSpecificCategoryClick }
                     >
                         { category }
@@ -53,7 +53,7 @@ export class Nav extends Component {
         });
 
         return (
-            <div className='nav_category'>
+            <div className='category'>
                 { categories }
             </div>
         );
@@ -62,7 +62,10 @@ export class Nav extends Component {
     render() {
         return (
             <>
-                <button className='clean_cat_button' onClick={ this.props.onCleanSpecificCategoryClick }>Clean category</button>
+                <div className='title'>
+                    <h2>Category</h2>
+                </div>
+                <button className='clean_button' onClick={ this.props.onCleanSpecificCategoryClick }>Clean category</button>
                 { this.showCategories() }
             </>
         );

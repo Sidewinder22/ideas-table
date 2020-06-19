@@ -7,7 +7,7 @@ import { Footer } from './grid_elements/Footer';
 import { Main } from './grid_elements/Main';
 import { SignUpScreen } from './components/SignUpScreen';
 import { WelcomeScreen } from './components/WelcomeScreen';
-import { SignInScreen } from './components/SignInScreen';
+import { LoginScreen } from './components/LoginScreen';
 
 const BACKEND = 'http://127.0.0.1:5000/';
 // const BACKEND = 'https://ideas.api.sidewinder22.pl/';
@@ -66,7 +66,7 @@ class App extends Component {
 
   handleLogoutChange(event){
     this.setState({
-      main: <SignInScreen
+      main: <LoginScreen
         onSignInSubmit = { this.handleSignInSubmit }
       />,
       nav: null,
@@ -85,7 +85,7 @@ class App extends Component {
 
   handleSingInClick() {
     this.setState({main:
-      <SignInScreen
+      <LoginScreen
         onSignInSubmit = { this.handleSignInSubmit }
       />
     });
@@ -109,7 +109,7 @@ class App extends Component {
 
           if (responseObject.response === 'ok') {
             this.setState({
-              main: <SignInScreen
+              main: <LoginScreen
                 onSignInSubmit = { this.handleSignInSubmit }
               />,
               errors: null,
@@ -168,7 +168,7 @@ class App extends Component {
       })
       .catch(error => {
           this.setState({
-            errors: 'Wrong username or password'
+            errors: 'Wrong username or password!'
           });
         });
   }
@@ -180,17 +180,15 @@ class App extends Component {
         <Header />
 
         <nav>
-          <h2>Category</h2>
           { this.state.nav }
         </nav>
 
         <main>
           { this.state.main }
-          { this.state.errors ? <div className='sign_error'>{ this.state.errors }</div> : ''}
+          { this.state.errors ? <div className='login_error'>{ this.state.errors }</div> : ''}
         </main>
         
         <aside>
-          <h2>User</h2>
           { this.state.aside }
         </aside>
 

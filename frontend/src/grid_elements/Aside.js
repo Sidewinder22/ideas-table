@@ -35,11 +35,12 @@ export class Aside extends Component {
     introduction() {
         return (
             <div className='user'>
-                <ul>
-                    <li>user: { this.state.user.username}</li>
-                    <li>id: { this.state.user.id }</li>
-                    <li>email: { this.state.user.email }</li>
-                </ul>
+                <div className='element'>
+                    { this.state.user.username} [{ this.state.user.id }]
+                </div>
+                <div className='element'>
+                    { this.state.user.email }
+                </div>
             </div>
         );
     }
@@ -47,7 +48,11 @@ export class Aside extends Component {
     render() {
         return (
             <>
-                <button onClick={ this.props.onLogoutButtonChange }>
+                <div className='title'>
+                    <h2>User</h2>
+                </div>
+
+                <button className='logout' onClick={ this.props.onLogoutButtonChange }>
                     Logout
                 </button>
                 { this.introduction() }

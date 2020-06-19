@@ -17,20 +17,31 @@ export class MainNavbar extends Component {
 
     render() {
         return (
-            <div className='ideas_bar'>
+            <div className='main_navbar'>
+
+                <div className='element'>
                 <SavedNotification
-                ref = { this.savedNotificationElement }
+                    ref = { this.savedNotificationElement }
                 />
+                </div>
 
-                <h1>Ideas</h1>
+                <div className='element'>
+                <div className='title'>
+                    <h1>Ideas</h1>
+                </div>
+                </div>
 
+                <div className='element'>
                 <NewWidgetButton
-                onChange = { this.props.newWidgetButtonChange }
+                    onChange = { this.props.newWidgetButtonChange }
                 />
+                </div>
 
-                <SortList 
-                onChange = { this.props.onSortListChange } 
-                /> 
+                <div className='element'>
+                <SortList
+                    onChange = { this.props.onSortListChange }
+                />
+                </div>
             </div>
         );
     }

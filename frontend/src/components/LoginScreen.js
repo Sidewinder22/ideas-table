@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../index.css';
 
-export class SignInScreen extends Component {
+export class LoginScreen extends Component {
     constructor(props) {
         super(props);
 
@@ -37,12 +37,17 @@ export class SignInScreen extends Component {
 
     render() {
         return (
-            <>
-                <h2>Sign In</h2>
-                    <form onSubmit={ this.handleSubmitChange }>
-                        <div className='login_form'>
-                            <label htmlFor='username'>Username</label>
-                            <input 
+            <div className='sign'>
+                <div className='title'>
+                    <h2>Login</h2>
+                </div>
+                <form onSubmit={ this.handleSubmitChange }>
+                    <div className='form'>
+
+                        <div className='row'>
+                            <label className='label' htmlFor='username'>Username:</label>
+                            <input
+                                className='input'
                                 type='text'
                                 placeholder='Enter username'
                                 name='username'
@@ -50,21 +55,25 @@ export class SignInScreen extends Component {
                                 onChange={ this.handleUsernameChange }
                                 required
                             />
+                        </div>
 
-                            <label htmlFor='password'>Password</label>
+                        <div className='row'>
+                            <label className='label' htmlFor='password'>Password:</label>
                             <input
-                                type='password' 
-                                placeholder='Enter password' 
-                                name='password' 
+                                className='input'
+                                type='password'
+                                placeholder='Enter password'
+                                name='password'
                                 value={ this.state.password }
                                 onChange={ this.handlePasswordChange }
                                 required
                             />
                         </div>
+                    </div>
 
-                        <input type='submit' name='submit' required />
-                    </form>
-            </>
+                    <input className='submit' type='submit' name='submit' required />
+                </form>
+            </div>
         );
     }
 }

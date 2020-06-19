@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'Cadman';
-    src: url('Cadman_Roman-webfont.woff') format('woff');
-}
-
 * {
     padding: 0;
     margin: 0;
@@ -11,19 +6,18 @@
 
 body {
     font-size: 1em;
-    font-family: 'Cadman', sans-serif;
 }
 
 /************************** APP ***************************
- *                      <header></header>
- *
- *  <nav>                 <main>                  <aside>
- * category                                         user
- *               <Widget/> <Widget/> <Widget/>
- *   info                                           info
- *  </nav>                </main>                 </aside>
- *
- *                      <footer></footer>
+ *                      <header></header>                 *
+ *                                                        *
+ *  <nav>                 <main>                  <aside> *
+ * category                                         user  *
+ *               <Widget/> <Widget/> <Widget/>            *
+ *   info                                           info  *
+ *  </nav>                </main>                </aside> *
+ *                                                        *
+ *                      <footer></footer>                 *
 **********************************************************/
 
 .app {
@@ -51,6 +45,7 @@ header {
     color: #33CC33;  
     background-color: #000000;  
 
+    padding: 10px;
 }
 
 nav {
@@ -61,7 +56,6 @@ nav {
     align-items: center;
 
     color: #333333;  
-    background-color: #e6ffcc; 
 }
 
 nav ul {
@@ -74,8 +68,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    background-color: #ffffe6;
 }
 
 aside {
@@ -86,7 +78,6 @@ aside {
     align-items: center;
 
     color: #333333;  
-    background-color: #e6ffcc; 
 }
 
 aside ul {
@@ -102,6 +93,8 @@ footer {
 
     color: #33CC33;  
     background-color: #000000;  
+
+    padding: 10px;
 }
 
 /**********************************************************
@@ -117,17 +110,68 @@ footer {
 }
 
 /**********************************************************
- * Ideas bar
+ * Main navbar
  */
-.ideas_bar {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    column-gap: 120px; 
+.main_navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.saved_notification {
-    font-size: 1.3em;
+.main_navbar .element {
+    margin: 40px;
+    align-self: center;
 }
+
+.main_navbar .title {
+    font-size: 2.0em;
+    border-bottom: 1px solid black;
+    margin-left: 130px;
+    margin-right: 80px;
+}
+
+.main_navbar .notification {
+    font-size: 1.7em;
+    color: green;
+}
+
+.main_navbar button {
+    padding: 10px;
+    border: 2px solid hsl(41, 100%, 66%);
+    border-radius: 10px;
+
+    font-size: 1.2em;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.main_navbar button:hover {
+    /* background-color: #da6d6d; */
+    background-color: hsl(41, 100%, 66%);
+    /* color: white; */
+}
+
+.main_navbar .select_list {
+    display: block;
+    font-size: 1.2em;
+    border: 2px solid yellowgreen;
+    border-radius: 5px;
+    padding: 5px;
+
+    background-color: rgb(240, 240, 240);
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.main_navbar .select_list:hover {
+    background-color: yellowgreen;
+}
+
+.main_navbar .select_list:focus {
+    background-color: rgba(235, 239, 240, 0.979);
+}
+
+
 
 /**********************************************************
  * Widget
@@ -150,18 +194,23 @@ footer {
     background-color: #f2f2f2;
     width: 230px;
     display: flex;
+    flex-direction: row;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.widget .elements {
+    display: flex;
     flex-direction: column;
 }
 
-.widget .title_bar {
-    display: flex;
-    flex-direction: row;
+.widget:hover {
+    background-color: rgb(216, 240, 132);
 }
 
 .widget .title {
-    display: flex;
-    justify-content: center;
     padding: 5px;
+    margin: 5px;
 }
 
 .widget .id {
@@ -183,57 +232,209 @@ footer {
 
 .widget .timestamp {
     display: flex;
-    justify-content: flex-end;
+    margin-left: 10px;
     margin-top: 10px;
     font-size: 0.8em;
 }
 
 .widget .close_button {
-    color: red;
+    align-self: center;
+    margin: 10px;
 }
 
 /**********************************************************
  * Main
  */
-.sign_button {
-    margin: 20px;
-}
 
-.login_form {
+ /*** Welcome ***/
+.welcome {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    margin-top: 50px;
 }
 
-.welcome_screen {
-    margin-top: 75px;
+.welcome .title {
+    font-size: 2em;    
+    color: white;
 }
 
-.sign_error {
-    color: red;
-    font-family: 1.7em;
+.welcome .login {
+    margin-top: 60px;
+    margin-bottom: 40px;
+
+    padding: 20px;
+
+    border: 2px solid green;
+    border-radius: 10px;
+
+    font-size: 2em;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.welcome .login:hover {
+    background-color: green;
+    color: white;
+}
+
+.welcome .sign_up {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+
+    border: 2px solid #b81d1d;
+    border-radius: 10px;
+
+    font-size: 1.5em;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.welcome .sign_up:hover {
+    background-color: #b81d1d;
+    color: white;
+}
+
+
+/*** Login & Sign up***/
+.sign {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.sign .title {
+    font-size: 2em;
+    margin-bottom: 25px;
+}
+
+.sign form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sign .form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.sign .label {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 1.2em;
+}
+ 
+.sign .input {
+    padding: 5px;
+    font-size: 1.2em;
+    margin: 15px;
+}
+
+.sign .submit {
     margin: 20px;
+    padding: 20px;
+    font-size: 1.2em;
+    border: 2px solid green;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.sign .submit:hover {
+    background-color: green;
+    color: white;
+}
+
+.login_error {
+    color: red;
+    font-size: 1.7em;
+    margin: 40px;
 }
 
 /**********************************************************
  * Nav
  */
-.nav_category {
+nav .title {
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+}
+
+nav .category {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.category_button {
-    margin: 5px;
+nav .clean_button {
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 2px solid #da6d6d;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.clean_cat_button {
-    margin: 20px;
-    font-size: 1em;
-    color: red;
+nav .clean_button:hover {
+    background-color: #da6d6d;
+    color: white;
 }
+
+nav .category_button {
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid rgb(126, 126, 204);
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+nav .category_button:hover {
+    background-color: rgb(126, 126, 204);
+    color: white;
+}
+
+
+/**********************************************************
+ * Aside
+ */
+aside .title {
+    font-size: 1.5em;
+    border-bottom: 1px solid black;
+}
+
+aside .category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+aside .logout {
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.2em;
+    border: 2px solid gray;
+    border-radius: 10px;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+aside .logout:hover {
+    background-color: gray;
+    color: white;
+}
+
+aside .user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 /**********************************************************
  * Media
