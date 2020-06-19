@@ -25,20 +25,15 @@ class Widget extends Component {
     render() {
         return (
             <div className='widget'>
-                <div className='title_bar'>
-                    { /*<Id
+                <div className='elements'>
+                    {/*<Id
                         id = { this.props.id }
-                    /> */ }
+                    />*/}
                     <Title
                         id = { this.props.id }
                         text = { this.props.title }
                         onWidgetChange = { this.props.onWidgetChange }
                     />
-                    <CloseButton
-                        id = { this.props.id }
-                        onChange = { this.props.onCloseButtonChange }
-                    />
-                </div>
                <Category
                     id = { this.props.id }
                     text = { this.props.category }
@@ -52,6 +47,11 @@ class Widget extends Component {
                 <Timestamp
                     timestamp = { this.props.timestamp }
                 />
+                </div>
+                    <CloseButton
+                        id = { this.props.id }
+                        onChange = { this.props.onCloseButtonChange }
+                    />
             </div>
         );
     }

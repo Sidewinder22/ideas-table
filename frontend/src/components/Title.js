@@ -43,15 +43,13 @@ class Title extends Component {
 
     render() {
         return (
-            <div className='title'>
-                <InputText
-                    class_name = 'title'
-                    type = 'text'
-                    id = { this.state.id }
-                    name = 'title'
-                    onChange = { this.handleChange }
-                />
-            </div>
+            <InputText
+                class_name = 'title'
+                type = 'text'
+                id = { this.state.id }
+                name = 'title'
+                onChange = { this.handleChange }
+            />
         );
     }
 }

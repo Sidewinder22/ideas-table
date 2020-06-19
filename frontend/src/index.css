@@ -8,10 +8,6 @@ body {
     font-size: 1em;
 }
 
-button:focus {
-    outline: none;
-}
-
 /************************** APP ***************************
  *                      <header></header>                 *
  *                                                        *
@@ -198,18 +194,23 @@ footer {
     background-color: #f2f2f2;
     width: 230px;
     display: flex;
+    flex-direction: row;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.widget .elements {
+    display: flex;
     flex-direction: column;
 }
 
-.widget .title_bar {
-    display: flex;
-    flex-direction: row;
+.widget:hover {
+    background-color: rgb(216, 240, 132);
 }
 
 .widget .title {
-    display: flex;
-    justify-content: center;
     padding: 5px;
+    margin: 5px;
 }
 
 .widget .id {
@@ -231,13 +232,14 @@ footer {
 
 .widget .timestamp {
     display: flex;
-    justify-content: flex-end;
+    margin-left: 10px;
     margin-top: 10px;
     font-size: 0.8em;
 }
 
 .widget .close_button {
-    color: red;
+    align-self: center;
+    margin: 10px;
 }
 
 /**********************************************************
