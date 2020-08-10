@@ -137,30 +137,28 @@ footer {
 
 .main_navbar button {
     padding: 10px;
-    border: 2px solid hsl(41, 100%, 66%);
+    border: 3px solid hsl(41, 100%, 66%);
     border-radius: 10px;
 
     font-size: 1.2em;
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 .main_navbar button:hover {
-    /* background-color: #da6d6d; */
     background-color: hsl(41, 100%, 66%);
-    /* color: white; */
 }
 
 .main_navbar .select_list {
     display: block;
     font-size: 1.2em;
-    border: 2px solid yellowgreen;
+    border: 3px solid yellowgreen;
     border-radius: 5px;
     padding: 5px;
 
     background-color: rgb(240, 240, 240);
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 .main_navbar .select_list:hover {
@@ -265,12 +263,12 @@ footer {
 
     padding: 20px;
 
-    border: 2px solid green;
+    border: 3px solid green;
     border-radius: 10px;
 
     font-size: 2em;
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 .welcome .login:hover {
@@ -283,12 +281,12 @@ footer {
     margin-bottom: 40px;
     padding: 20px;
 
-    border: 2px solid #b81d1d;
+    border: 3px solid #b81d1d;
     border-radius: 10px;
 
     font-size: 1.5em;
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 .welcome .sign_up:hover {
@@ -339,10 +337,10 @@ footer {
     margin: 20px;
     padding: 20px;
     font-size: 1.2em;
-    border: 2px solid green;
+    border: 3px solid green;
     border-radius: 10px;
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 .sign .submit:hover {
@@ -374,10 +372,10 @@ nav .clean_button {
     margin: 20px;
     padding: 10px;
     font-size: 1.2em;
-    border: 2px solid #da6d6d;
+    border: 3px solid #da6d6d;
     border-radius: 10px;
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 nav .clean_button:hover {
@@ -388,10 +386,10 @@ nav .clean_button:hover {
 nav .category_button {
     margin: 5px;
     padding: 10px;
-    border: 2px solid rgb(126, 126, 204);
+    border: 3px solid rgb(126, 126, 204);
     border-radius: 10px;
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 nav .category_button:hover {
@@ -418,10 +416,10 @@ aside .logout {
     margin: 20px;
     padding: 10px;
     font-size: 1.2em;
-    border: 2px solid gray;
+    border: 3px solid gray;
     border-radius: 10px;
     transition-duration: 0.4s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 2px 6px 0 rgba(0,0,0,0.19);
 }
 
 aside .logout:hover {

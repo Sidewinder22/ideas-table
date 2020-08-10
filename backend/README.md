@@ -1,37 +1,35 @@
 # Ideas Table - Backend
 
-Flask
+Flask backend for Ideas Table web application.
 
 # Commands
+### Create environment
+```bash
 $ python3 -m venv venv  // Create Venv
-
 $ (venv) source venv/bin/activate
+$ (venv) pip install -r requirements.txt
+```
 
-$ (venv) pip install Flask
+### Create Database
+```bash
+$ flask shell
+>>> from app import db
+>>> db.create_all()
+```
 
-$ (venv) pip install -U flask-cors
-
-$ (venv) pip install sqlalchemy
-
-$ (venv) pip install flask-migrate
-
-$ (venv) pip install python-dotenv
-
-$ (venv) pip install wheel
-
-$ (venv) pip install uwsgi
-
-$ (venv) pip install Flask-JWT
-
-### DataBase
-$ (venv) flask db migrate -m "users table"
-$ (venv) flask db upgrade
-
-### Run
+### Run backend app
+```bash
 $ (vevn) export FLASK_APP=app.py
 $ flask run
-$ (flask shell) db.create_all()
+```
+
+### Database migrations
+```bash
+$ (venv) flask db migrate -m "users table"
+$ (venv) flask db upgrade
+```
 
 ### REST POST
+```bash
 $ curl -X POST -H 'Content-Type: application/json' http://127.0.0.1:5000/api/idea/1 -d '{"title": "New Title"}'
-
+```
