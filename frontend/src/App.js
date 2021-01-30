@@ -10,7 +10,6 @@ import { WelcomeScreen } from './components/WelcomeScreen';
 import { LoginScreen } from './components/LoginScreen';
 
 const BACKEND = 'http://127.0.0.1:5000/';
-// const BACKEND = 'https://ideas.api.sidewinder22.pl/';
 export const API = BACKEND + 'api/';
 export const USERS_QUERY = 'users';
 const AUTH_QUERY = 'auth';
